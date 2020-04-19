@@ -1,0 +1,5 @@
+loading_rensahyou = "加载连锁表..."
+open_rensahyou_failed = "无法打开连锁表文件！"
+read_rensahyou_failed = "无法读取连锁表内容！"
+close_rensahyou_failed = "关闭连锁表文件异常！"
+parse_rensahyou_failed = "无法解析连锁表內容！"

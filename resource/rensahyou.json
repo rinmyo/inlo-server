@@ -1,0 +1,17 @@
+{
+  "X3JG-3G": {
+    "buttons": [ "XLA", "S3LA" ],
+    "section": [ "3-7DG", "9-13DG", "15DG", "29DG", "3G" ],
+    "turnout": [ "1/3", "5/7", "9/11", "(13/15)", "29/31" ],
+    "signals": [],
+    "enemies": []
+  },
+
+  "X3JG-IG": {
+    "buttons": [ "XLA", "SILA" ],
+    "section": [ "3-7DG", "9-13DG", "IG" ],
+    "turnout": [ "1/3", "5/7", "(9/11)", "13/15" ],
+    "signals": [],
+    "enemies": []
+  }
+}

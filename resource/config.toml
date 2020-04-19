@@ -1,0 +1,6 @@
+[station]
+name = "測試車站"
+
+[server]
+log_level = "trace"
+language = "zh-TW"
