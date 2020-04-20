@@ -2,18 +2,20 @@ package config
 
 import (
 	"github.com/pelletier/go-toml"
+	sys "github.com/shirou/gopsutil/host"
 	log "github.com/sirupsen/logrus"
 	"github.com/weekface/mgorus"
 	"pracserver/src/tool"
+	"time"
 )
 
 const (
-	defaultLevel        = log.DebugLevel
-	defaultLangCode     = "zh-TW"
-	defaultMongoHost    = "localhost"
-	defaultMongoPort    = "27017"
-	defaultMongoDB      = "pracserver"
-	serverLogCollection = "server_log"
+	defaultLevel     = log.InfoLevel
+	defaultLangCode  = "en-US"
+	defaultMongoHost = "localhost"
+	defaultMongoPort = "27017"
+	defaultMongoDB   = "pracserver"
+	serverLogColBase = "server_log_"
 
 	configPath = "./resource/config.toml"
 	i18nPath   = "./resource/i18n/"
@@ -23,6 +25,7 @@ const (
 
 var (
 	config *toml.Tree
+	Msg    *Lang
 
 	replace = tool.Replace
 )
@@ -67,7 +70,7 @@ func setLanguage(lang *Lang) {
 	Msg = lang
 }
 
-func mongoHooker() (log.Hook, error) {
+func mongoHook() (log.Hook, string, string, error) {
 	var host, port, db interface{}
 	if host = config.Get(mongoHost); host == nil {
 		host = defaultMongoHost
@@ -81,35 +84,31 @@ func mongoHooker() (log.Hook, error) {
 		db = defaultMongoDB
 	}
 
-	if hooker, err := mgorus.NewHooker(host.(string)+":"+port.(string), db.(string), serverLogCollection); err != nil {
-		return nil, err
+	url := host.(string) + ":" + port.(string)
+	col := serverLogColBase + time.Now().Format("20060102")
+
+	if hooker, err := mgorus.NewHooker(url, db.(string), col); err != nil {
+		return nil, "", "", err
 	} else {
-		return hooker, nil
+		return hooker, url, db.(string), nil
 	}
 }
 
-func setMongoHooker(hooker log.Hook) {
-	log.AddHook(hooker)
+func setMongoHook(hook log.Hook) {
+	log.AddHook(hook)
 }
 
 func setConfig(cfg *toml.Tree) {
 	config = cfg
 }
 
-func init() {
+func loadConfig() {
 	setLanguage(defaultLang)
 	setLogLevel(defaultLevel)
-
 	if cfg, err := toml.LoadFile(configPath); err != nil {
 		log.Fatal(loadFailedMsg)
 	} else {
 		setConfig(cfg)
-
-		if hooker, err := mongoHooker(); err != nil {
-			log.Error(err)
-		} else {
-			setMongoHooker(hooker)
-		}
 
 		if lang, code := language(); lang != defaultLang {
 			setLanguage(lang)
@@ -120,5 +119,24 @@ func init() {
 			setLogLevel(lvl)
 			log.Info(replace(Msg.SetOptMsg, Msg.LogLvl, lvl.String()))
 		}
+
+		if hook, url, db, err := mongoHook(); err != nil {
+			log.Error(err)
+		} else {
+			setMongoHook(hook)
+			log.Info(replace(Msg.ConnMongoMsg, url, db))
+		}
+
+		log.Info(Msg.Station, StationName())
+		logEnvInfo()
 	}
+}
+
+func logEnvInfo() {
+	sysInfo, _ := sys.Info()
+	log.Debug(sysInfo.String())
+}
+
+func init() {
+	loadConfig()
 }

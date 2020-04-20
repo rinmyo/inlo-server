@@ -1,0 +1,17 @@
+{
+  "startup_time": "startup time：{}",
+  "interlock": "interlock table",
+  "log_level": "log level",
+  "language": "user language",
+  "station": "station: ",
+  "route": "route",
+  "setting_option_msg": "{} is set with \"{}\"",
+  "unspecified_option_msg": "{} is not specified, will be set with \"{}\" by default",
+  "wrong_option_msg": "cannot find \"{}\" named {}, will be set with \"{}\" by default",
+  "connect_mongodb_msg": "succeeded to connecting {} hosted MongoDB database: \"{}\"",
+  "loading_msg": "loading {} ...",
+  "open_file_failed_msg": "cannot open \"{}\"",
+  "read_file_failed_msg": "cannot read \"{}\"",
+  "close_file_failed_msg": "cannot close \"{}\"",
+  "parse_file_failed_msg": "cannot parse \"{}\""
+}

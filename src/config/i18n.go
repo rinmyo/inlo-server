@@ -7,17 +7,19 @@ import (
 	"os"
 )
 
-var Msg *Lang
-
 type Lang struct {
-	Rsh    string `json:"rensahyou"`
-	LogLvl string `json:"log_level"`
-	Lang   string `json:"language"`
+	Interlock   string `json:"interlock"`
+	LogLvl      string `json:"log_level"`
+	Lang        string `json:"language"`
+	Station     string `json:"station"`
+	Route       string `json:"route"`
+	StartupTime string `json:"startup_time"`
 
 	SetOptMsg        string `json:"setting_option_msg"`
 	UnspecOptMsg     string `json:"unspecified_option_msg"`
 	WrgOptMsg        string `json:"wrong_option_msg"`
-	LoadingFileMsg   string `json:"loading_file_msg"`
+	LoadingMsg       string `json:"loading_msg"`
+	ConnMongoMsg     string `json:"connect_mongodb_msg"`
 	OpenFileFailMsg  string `json:"open_file_failed_msg"`
 	ReadFileFailMsg  string `json:"read_file_failed_msg"`
 	CloseFileFailMsg string `json:"close_file_failed_msg"`

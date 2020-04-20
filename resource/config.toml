@@ -2,8 +2,8 @@
 name = "測試車站"
 
 [server]
-log_level = "no such level"
-language = "zh-TW"
+log_level = "debug"
+language = "en-US"
 
 [mongodb]
 host = "localhost"
