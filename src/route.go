@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	rensahyouPath = "./resource/interlock.json"
+	interlockPath = "./resource/interlock.json"
 )
 
 var (
@@ -100,7 +100,7 @@ outer:
 
 func LoadRoute() {
 	log.Info(replace(msg.LoadingMsg, msg.Interlock))
-	if jsonFile, err := os.Open(rensahyouPath); err != nil {
+	if jsonFile, err := os.Open(interlockPath); err != nil {
 		log.Fatal(replace(msg.OpenFileFailMsg, msg.Interlock))
 	} else if byteValue, err := ioutil.ReadAll(jsonFile); err != nil {
 		log.Fatal(replace(msg.ReadFileFailMsg, msg.Interlock))

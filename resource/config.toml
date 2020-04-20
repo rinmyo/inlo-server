@@ -1,5 +1,5 @@
 [station]
-name = "測試車站"
+name = "test station"
 
 [server]
 log_level = "debug"
