@@ -3,3 +3,8 @@ name = "測試車站"
 
 [server]
 log_level = "no such level"
+
+[mongodb]
+host = "localhost"
+port = "27017"
+database = "pracserver"

@@ -3,12 +3,17 @@ package config
 import (
 	"github.com/pelletier/go-toml"
 	log "github.com/sirupsen/logrus"
+	"github.com/weekface/mgorus"
 	"pracserver/src/tool"
 )
 
 const (
-	defaultLevel    = log.DebugLevel
-	defaultLangCode = "zh-TW"
+	defaultLevel        = log.DebugLevel
+	defaultLangCode     = "zh-TW"
+	defaultMongoHost    = "localhost"
+	defaultMongoPort    = "27017"
+	defaultMongoDB      = "pracserver"
+	serverLogCollection = "server_log"
 
 	configPath = "./resource/config.toml"
 	i18nPath   = "./resource/i18n/"
@@ -62,6 +67,35 @@ func setLanguage(lang *Lang) {
 	Msg = lang
 }
 
+func mongoHooker() (log.Hook, error) {
+	var host, port, db interface{}
+	if host = config.Get(mongoHost); host == nil {
+		host = defaultMongoHost
+	}
+
+	if port = config.Get(mongoPort); port == nil {
+		port = defaultMongoPort
+	}
+
+	if db = config.Get(mongoDatabase); db == nil {
+		db = defaultMongoDB
+	}
+
+	if hooker, err := mgorus.NewHooker(host.(string)+":"+port.(string), db.(string), serverLogCollection); err != nil {
+		return nil, err
+	} else {
+		return hooker, nil
+	}
+}
+
+func setMongoHooker(hooker log.Hook) {
+	log.AddHook(hooker)
+}
+
+func setConfig(cfg *toml.Tree) {
+	config = cfg
+}
+
 func init() {
 	setLanguage(defaultLang)
 	setLogLevel(defaultLevel)
@@ -69,7 +103,13 @@ func init() {
 	if cfg, err := toml.LoadFile(configPath); err != nil {
 		log.Fatal(loadFailedMsg)
 	} else {
-		config = cfg
+		setConfig(cfg)
+
+		if hooker, err := mongoHooker(); err != nil {
+			log.Error(err)
+		} else {
+			setMongoHooker(hooker)
+		}
 
 		lang, code := language()
 		log.Info(replace(Msg.SetOptMsg, Msg.Lang, code))
