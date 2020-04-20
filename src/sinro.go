@@ -7,16 +7,21 @@ import (
 	"io/ioutil"
 	"os"
 	"pracserver/src/config"
+	"pracserver/src/tool"
 )
 
-const rensahyouPath = "./resource/rensahyou.json"
+const (
+	rensahyouPath = "./resource/rensahyou.json"
+)
 
 var (
 	//連鎖表
 	rensahyou map[string]Sinro
-
 	//進路池
 	sinroPool map[string]*LivingSinro
+
+	msg     = config.Msg
+	replace = tool.Replace
 )
 
 type Sinro struct {
@@ -75,14 +80,14 @@ func (ls LivingSinro) NewSinro() error {
 }
 
 func init() {
-	log.Info(config.LoadingRshMsg())
+	log.Info(replace(msg.LoadingFileMsg, msg.Rsh))
 	if jsonFile, err := os.Open(rensahyouPath); err != nil {
-		log.Fatal(config.OpenRshFailMsg())
+		log.Fatal(replace(msg.OpenFileFailMsg, msg.Rsh))
 	} else if byteValue, err := ioutil.ReadAll(jsonFile); err != nil {
-		log.Fatal(config.ReadRshFailMsg())
+		log.Fatal(replace(msg.ReadFileFailMsg, msg.Rsh))
 	} else if err = jsonFile.Close(); err != nil {
-		log.Warn(config.CloseRshFailMsg())
+		log.Warn(replace(msg.CloseFileFailMsg, msg.Rsh))
 	} else if err := json.Unmarshal(byteValue, &rensahyou); err != nil {
-		log.Fatal(config.ParseRshFailMsg())
+		log.Fatal(replace(msg.ParseFileFailMsg, msg.Rsh))
 	}
 }

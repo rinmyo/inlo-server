@@ -1,0 +1,13 @@
+{
+  "rensahyou": "聯鎖表",
+  "log_level": "日誌等級",
+  "language": "用戶語言",
+  "setting_option_msg": "設定{}為 {}",
+  "unspecified_option_msg": "{}未指定, 將使用預設值 {}",
+  "wrong_option_msg": "未找到名為 {} 的{}, 將使用預設值 {}",
+  "loading_file_msg": "載入{}...",
+  "open_file_failed_msg": "無法{}檔案！",
+  "read_file_failed_msg": "無法擷取{}內容！",
+  "close_file_failed_msg": "關閉{}檔案異常！",
+  "parse_file_failed_msg": "無法解析{}內容！"
+}

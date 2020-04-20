@@ -3,66 +3,84 @@ package config
 import (
 	"github.com/pelletier/go-toml"
 	log "github.com/sirupsen/logrus"
+	"pracserver/src/tool"
 )
 
 const (
-	defaultLevel = log.DebugLevel
-	defaultLang  = "zh-TW"
+	defaultLevel    = log.DebugLevel
+	defaultLangCode = "zh-TW"
 
 	configPath = "./resource/config.toml"
 	i18nPath   = "./resource/i18n/"
 
 	loadFailedMsg = "loading configuration failed!"
-	failLangMsg   = "unknown language: "
-	userLangMsg   = "user language: "
 )
 
 var (
 	config *toml.Tree
+
+	replace = tool.Replace
 )
 
 func StationName() string {
 	return config.Get(stationName).(string)
 }
 
-func setLogLevel() {
-	level := defaultLevel
-	if lvl := config.Get(logLevel); lvl == nil {
-		log.Warn(logLevelUnsetMsg())
+func logLevel() log.Level {
+	if lvl := config.Get(serverLogLevel); lvl == nil {
+		log.Warn(replace(Msg.UnspecOptMsg, Msg.LogLvl, defaultLevel.String()))
+		return defaultLevel
 	} else {
 		if v, err := log.ParseLevel(lvl.(string)); err != nil {
-			log.Warn(logLevelErrMsg(lvl.(string)))
+			log.Error(replace(Msg.WrgOptMsg, lvl.(string), Msg.LogLvl, defaultLevel.String()))
+			return defaultLevel
 		} else {
-			level = v
+			return v
 		}
 	}
-	log.Info(logLevelMsg(), level)
+}
+
+func setLogLevel(level log.Level) {
 	log.SetLevel(level)
 }
 
-func language() string {
+func language() (*Lang, string) {
 	if v := config.Get(userLang); v != nil {
-		return v.(string)
+		if lang, err := NewLang(v.(string)); err != nil {
+			log.Error(replace(Msg.WrgOptMsg, v.(string), Msg.Lang, defaultLangCode))
+			return defaultLang, defaultLangCode
+		} else {
+			return lang, v.(string)
+		}
 	} else {
-		return defaultLang
+		log.Warn(replace(Msg.UnspecOptMsg, Msg.Lang, defaultLangCode))
+		return defaultLang, defaultLangCode
 	}
 }
 
-func setLanguage() {
-	if lan, err := toml.LoadFile(i18nPath + language() + ".toml"); err != nil {
-		log.Fatal(failLangMsg, language())
-	} else {
-		lang = lan
-		log.Info(userLangMsg, language())
-	}
+func setLanguage(lang *Lang) {
+	Msg = lang
 }
 
 func init() {
+	setLanguage(defaultLang)
+	setLogLevel(defaultLevel)
+
 	if cfg, err := toml.LoadFile(configPath); err != nil {
 		log.Fatal(loadFailedMsg)
 	} else {
 		config = cfg
-		setLanguage()
-		setLogLevel()
+
+		lang, code := language()
+		log.Info(replace(Msg.SetOptMsg, Msg.Lang, code))
+		if lang != defaultLang {
+			setLanguage(lang)
+		}
+
+		lvl := logLevel()
+		log.Info(replace(Msg.SetOptMsg, Msg.LogLvl, lvl.String()))
+		if lvl != defaultLevel {
+			setLogLevel(lvl)
+		}
 	}
 }

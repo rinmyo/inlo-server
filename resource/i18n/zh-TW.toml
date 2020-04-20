@@ -1,8 +1,0 @@
-log_level = "設定日誌等級為 "
-log_level_unset = "未找到日誌等級, 將使用預設的等級"
-log_level_error = "日誌等級 \"{{.}}\" 不存在, 將使用預設的等級"
-loading_rensahyou = "載入連鎖表..."
-open_rensahyou_failed = "無法打開連鎖表檔案！"
-read_rensahyou_failed = "無法擷取連鎖表內容！"
-close_rensahyou_failed = "關閉連鎖表檔案異常！"
-parse_rensahyou_failed = "無法解析連鎖表內容！"

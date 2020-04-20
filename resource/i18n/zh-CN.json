@@ -1,0 +1,12 @@
+{
+  "rensahyou": "連鎖表",
+  "language_msg": "用戶語言：{}",
+  "log_level_msg": "設定日誌等級為 {}",
+  "log_level_unset_msg": "未找到日誌等級, 將使用預設的等級 {}",
+  "log_level_error_msg": "日誌等級 {} 不存在, 將使用預設的等級 {}",
+  "loading_rensahyou_msg": "載入連鎖表...",
+  "open_file_failed_msg": "無法{}檔案！",
+  "read_file_failed_msg": "無法擷取{}內容！",
+  "close_file_failed_msg": "關閉{}檔案異常！",
+  "parse_file_failed_msg": "無法解析{}內容！"
+}

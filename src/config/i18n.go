@@ -1,45 +1,42 @@
 package config
 
 import (
-	"bytes"
-	"github.com/pelletier/go-toml"
-	"text/template"
+	"encoding/json"
+	"errors"
+	"io/ioutil"
+	"os"
 )
 
-var lang *toml.Tree
+var Msg *Lang
 
-func logLevelErrMsg(level string) string {
-	msg := lang.Get("log_level_error").(string)
-	var doc bytes.Buffer
-	temp, _ := template.New("log_level_error").Parse(msg)
-	_ = temp.Execute(&doc, level)
-	return doc.String()
+type Lang struct {
+	Rsh    string `json:"rensahyou"`
+	LogLvl string `json:"log_level"`
+	Lang   string `json:"language"`
+
+	SetOptMsg        string `json:"setting_option_msg"`
+	UnspecOptMsg     string `json:"unspecified_option_msg"`
+	WrgOptMsg        string `json:"wrong_option_msg"`
+	LoadingFileMsg   string `json:"loading_file_msg"`
+	OpenFileFailMsg  string `json:"open_file_failed_msg"`
+	ReadFileFailMsg  string `json:"read_file_failed_msg"`
+	CloseFileFailMsg string `json:"close_file_failed_msg"`
+	ParseFileFailMsg string `json:"parse_file_failed_msg"`
 }
 
-func logLevelMsg() string {
-	return lang.Get("log_level").(string)
-}
+var defaultLang, _ = NewLang(defaultLangCode)
 
-func logLevelUnsetMsg() string {
-	return lang.Get("log_level_unset").(string)
-}
-
-func LoadingRshMsg() string {
-	return lang.Get("loading_rensahyou").(string)
-}
-
-func OpenRshFailMsg() string {
-	return lang.Get("open_rensahyou_failed").(string)
-}
-
-func ReadRshFailMsg() string {
-	return lang.Get("read_rensahyou_failed").(string)
-}
-
-func CloseRshFailMsg() string {
-	return lang.Get("close_rensahyou_failed").(string)
-}
-
-func ParseRshFailMsg() string {
-	return lang.Get("parse_rensahyou_failed").(string)
+func NewLang(langCode string) (*Lang, error) {
+	var lang Lang
+	completePath := i18nPath + langCode + ".json"
+	if jsonFile, err := os.Open(completePath); err != nil {
+		return nil, errors.New(replace(Msg.OpenFileFailMsg, completePath))
+	} else if byteValue, err := ioutil.ReadAll(jsonFile); err != nil {
+		return nil, errors.New(replace(Msg.ReadFileFailMsg, completePath))
+	} else if err = jsonFile.Close(); err != nil {
+		return nil, errors.New(replace(Msg.CloseFileFailMsg, completePath))
+	} else if err := json.Unmarshal(byteValue, &lang); err != nil {
+		return nil, errors.New(replace(Msg.ParseFileFailMsg, completePath))
+	}
+	return &lang, nil
 }
