@@ -111,16 +111,14 @@ func init() {
 			setMongoHooker(hooker)
 		}
 
-		lang, code := language()
-		log.Info(replace(Msg.SetOptMsg, Msg.Lang, code))
-		if lang != defaultLang {
+		if lang, code := language(); lang != defaultLang {
 			setLanguage(lang)
+			log.Info(replace(Msg.SetOptMsg, Msg.Lang, code))
 		}
 
-		lvl := logLevel()
-		log.Info(replace(Msg.SetOptMsg, Msg.LogLvl, lvl.String()))
-		if lvl != defaultLevel {
+		if lvl := logLevel(); lvl != defaultLevel {
 			setLogLevel(lvl)
+			log.Info(replace(Msg.SetOptMsg, Msg.LogLvl, lvl.String()))
 		}
 	}
 }
