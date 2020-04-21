@@ -1,14 +1,14 @@
 package tool
 
 import (
+	"strconv"
 	"strings"
 )
 
-func Replace(temp string, args ...string) (result string) {
-	const placeholder = "{}"
-	result = temp
-	for _, arg := range args {
-		result = strings.Replace(result, placeholder, arg, 1)
+func Replace(temp string, args ...string) string {
+	for n, arg := range args {
+		placeholder := "{" + strconv.Itoa(n) + "}"
+		temp = strings.ReplaceAll(temp, placeholder, arg)
 	}
-	return
+	return temp
 }

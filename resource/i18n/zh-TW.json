@@ -1,17 +1,17 @@
 {
-  "startup_time": "啟動時間：{}",
+  "startup_time": "啟動時間：{0}",
   "interlock": "聯鎖表",
   "log_level": "日誌等級",
   "language": "用戶語言",
   "station": "車站: ",
   "route": "進路",
-  "setting_option_msg": "設定{}為 \"{}\"",
-  "unspecified_option_msg": "{}未指定, 將使用預設值 \"{}\"",
-  "wrong_option_msg": "未找到名為 \"{}\" 的{}, 將使用預設值 \"{}\"",
-  "connect_mongodb_msg": "已連接位於 {} 的 MongoDB: \"{}\"",
-  "loading_msg": "載入{}...",
-  "open_file_failed_msg": "無法打開{}檔案！",
-  "read_file_failed_msg": "無法擷取{}內容！",
-  "close_file_failed_msg": "關閉{}檔案異常！",
-  "parse_file_failed_msg": "無法解析{}內容！"
+  "setting_option_msg": "設定{0}為 \"{1}\"",
+  "unspecified_option_msg": "{0}未指定, 將使用預設值 \"{1}\"",
+  "wrong_option_msg": "未找到名為 \"{0}\" 的{1}, 將使用預設值 \"{2}\"",
+  "connect_mongodb_msg": "已連接位於 {0} 的 MongoDB: \"{1}\"",
+  "loading_msg": "載入{0}...",
+  "open_file_failed_msg": "無法打開{0}檔案！",
+  "read_file_failed_msg": "無法擷取{0}內容！",
+  "close_file_failed_msg": "關閉{0}檔案異常！",
+  "parse_file_failed_msg": "無法解析{0}內容！"
 }

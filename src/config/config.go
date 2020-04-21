@@ -14,12 +14,12 @@ const (
 	defaultLangCode  = "en-US"
 	defaultMongoHost = "localhost"
 	defaultMongoPort = "27017"
-	defaultMongoDB   = "pracserver"
-	serverLogColBase = "server_log_"
+	defaultLogDb     = "prac_log"
 
 	configPath = "./resource/config.toml"
 	i18nPath   = "./resource/i18n/"
 
+	logFormat     = "log_20060102150405"
 	loadFailedMsg = "loading configuration failed!"
 )
 
@@ -81,11 +81,11 @@ func mongoHook() (log.Hook, string, string, error) {
 	}
 
 	if db = config.Get(mongoDatabase); db == nil {
-		db = defaultMongoDB
+		db = defaultLogDb
 	}
 
 	url := host.(string) + ":" + port.(string)
-	col := serverLogColBase + time.Now().Format("20060102")
+	col := time.Now().Format(logFormat)
 
 	if hooker, err := mgorus.NewHooker(url, db.(string), col); err != nil {
 		return nil, "", "", err

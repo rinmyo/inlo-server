@@ -2,10 +2,8 @@
 name = "test station"
 
 [server]
-log_level = "debug"
-language = "en-US"
+log_level = "debugsd"
 
 [mongodb]
 host = "localhost"
 port = "27017"
-database = "pracserver"

@@ -1,17 +1,17 @@
 {
-  "startup_time": "startup time：{}",
+  "startup_time": "startup time：{0}",
   "interlock": "interlock table",
   "log_level": "log level",
   "language": "user language",
   "station": "station: ",
   "route": "route",
-  "setting_option_msg": "{} is set with \"{}\"",
-  "unspecified_option_msg": "{} is not specified, will be set with \"{}\" by default",
-  "wrong_option_msg": "cannot find \"{}\" named {}, will be set with \"{}\" by default",
-  "connect_mongodb_msg": "succeeded to connecting {} hosted MongoDB database: \"{}\"",
-  "loading_msg": "loading {} ...",
-  "open_file_failed_msg": "cannot open \"{}\"",
-  "read_file_failed_msg": "cannot read \"{}\"",
-  "close_file_failed_msg": "cannot close \"{}\"",
-  "parse_file_failed_msg": "cannot parse \"{}\""
+  "setting_option_msg": "{0} is set with \"{1}\"",
+  "unspecified_option_msg": "{0} is not specified, will use \"{1}\" by default",
+  "wrong_option_msg": "cannot find \"{0}\" named {1}, will use \"{2}\" by default",
+  "connect_mongodb_msg": "succeeded to connect MongoDB database: \"{1}\" hosted on {0}",
+  "loading_msg": "loading {0} ...",
+  "open_file_failed_msg": "cannot open \"{0}\"",
+  "read_file_failed_msg": "cannot read \"{0}\"",
+  "close_file_failed_msg": "cannot close \"{0}\"",
+  "parse_file_failed_msg": "cannot parse \"{0}\""
 }
