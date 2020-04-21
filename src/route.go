@@ -19,7 +19,7 @@ var (
 	//連鎖表
 	interlockTable map[string]*Route
 	//進路池
-	routePool []*LivingRoute
+	routePool = make(map[string]*LivingRoute)
 
 	msg     = config.Msg
 	replace = tool.Replace
@@ -39,23 +39,26 @@ func (r *Route) setId(id string) {
 }
 
 func (r *Route) found() error {
-	if r.hasLivingEnemies() {
-		return errors.New("無法建立：" + r.Id + "因為存在敵對進路")
+	if r.isLiving() {
+		return errors.New(replace(msg.FoundRouteFailMsg, r.Id, msg.LivingRouteExistMsg))
 	}
-	routePool = append(routePool, r.NewLivingRoute())
+	if r.hasLivingEnemies() {
+		return errors.New(replace(msg.FoundRouteFailMsg, r.Id, msg.EnemyRouteExistMsg))
+	}
+	livingRoute := &LivingRoute{time.Now(), r}
+	routePool[r.Id] = livingRoute
 	return nil
 }
 
-func (r *Route) NewLivingRoute() *LivingRoute {
-	return &LivingRoute{foundTime: time.Now(), Route: r}
+func (r *Route) isLiving() bool {
+	_, ok := routePool[r.Id]
+	return ok
 }
 
 func (r *Route) livingEnemies() (result []*LivingRoute) {
 	for _, v := range r.Enemies {
-		for _, s := range routePool {
-			if s.GetRoute() == getRouteByName(v) {
-				result = append(result, s)
-			}
+		if route, ok := routePool[v]; ok {
+			result = append(result, route)
 		}
 	}
 	return
@@ -66,13 +69,16 @@ func (r *Route) hasLivingEnemies() bool {
 }
 
 type LivingRoute struct {
-	foundTime  time.Time
-	cancelTime time.Time
+	foundTime time.Time
 	*Route
 }
 
 func (lr *LivingRoute) GetRoute() *Route {
 	return lr.Route
+}
+
+func (lr *LivingRoute) Cancel() {
+	delete(routePool, lr.Id)
 }
 
 func getRouteByName(name string) *Route {

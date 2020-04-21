@@ -13,5 +13,8 @@
   "open_file_failed_msg": "cannot open \"{0}\"",
   "read_file_failed_msg": "cannot read \"{0}\"",
   "close_file_failed_msg": "cannot close \"{0}\"",
-  "parse_file_failed_msg": "cannot parse \"{0}\""
+  "parse_file_failed_msg": "cannot parse \"{0}\"",
+  "found_route_failed_msg": "cannot found route：{0}, reason：{1}",
+  "living_route_exist_msg": "exist same route",
+  "enemy_route_exist_msg": "exist enemy route"
 }

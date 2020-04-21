@@ -13,5 +13,6 @@
   "open_file_failed_msg": "無法打開{0}檔案！",
   "read_file_failed_msg": "無法擷取{0}內容！",
   "close_file_failed_msg": "關閉{0}檔案異常！",
-  "parse_file_failed_msg": "無法解析{0}內容！"
+  "parse_file_failed_msg": "無法解析{0}內容！",
+  "found_route_failed_msg": "無法建立近路：{0} 原因：{1}"
 }
