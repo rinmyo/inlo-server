@@ -13,5 +13,7 @@
   "parse_file_failed_msg": "cannot parse file",
   "found_route_failed_msg": "cannot found route",
   "living_route_exist_msg": "exist same route",
-  "enemy_route_exist_msg": "exist enemy route"
+  "enemy_route_exist_msg": "exist enemy route",
+  "obtain_route_failed_msg": "obtain route failed",
+  "no_such_route_msg": "no such route"
 }

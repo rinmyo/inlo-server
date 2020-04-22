@@ -23,6 +23,8 @@ type Lang struct {
 	FoundRouteFailMsg   string `json:"found_route_failed_msg"`
 	LivingRouteExistMsg string `json:"living_route_exist_msg"`
 	EnemyRouteExistMsg  string `json:"enemy_route_exist_msg"`
+	ObtainRouteFailMsg  string `json:"obtain_route_failed_msg"`
+	NoSuchRouteMsg      string `json:"no_such_route_msg"`
 }
 
 var defaultLang, _ = NewLang(defaultLangCode)

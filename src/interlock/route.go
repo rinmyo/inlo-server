@@ -2,7 +2,6 @@ package interlock
 
 import (
 	"encoding/json"
-	"errors"
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"os"
@@ -17,6 +16,8 @@ const (
 	route     = "Route"
 	content   = "Content"
 	interlock = "interlock information"
+	buttons   = "Buttons"
+	routeName = "Name"
 )
 
 var (
@@ -93,15 +94,17 @@ func (r *Route) HasLivingEnemies() bool {
 	return len(r.LivingEnemies()) > 0
 }
 
-func GetRouteByName(name string) *Route {
-	if val, ok := interlockTable[name]; ok {
-		return val
-	} else {
-		return nil
+func GetRouteByName(name string) (*Route, bool) {
+	val, ok := interlockTable[name]
+	if !ok {
+		log.WithField(reason, msg.NoSuchRouteMsg).
+			WithField(routeName, name).
+			Error(msg.ObtainRouteFailMsg)
 	}
+	return val, ok
 }
 
-func GetRouteByBtn(btns ...string) (*Route, error) {
+func GetRouteByBtn(btns ...string) (*Route, bool) {
 outer:
 	for _, v := range interlockTable {
 		if len(v.Buttons) == len(btns) {
@@ -110,10 +113,13 @@ outer:
 					continue outer
 				}
 			}
-			return v, nil
+			return v, true
 		}
 	}
-	return nil, errors.New("no such route")
+	log.WithField(reason, msg.NoSuchRouteMsg).
+		WithField(buttons, btns).
+		Error(msg.ObtainRouteFailMsg)
+	return nil, false
 }
 
 func loadRoute() {
