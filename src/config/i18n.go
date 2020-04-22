@@ -8,18 +8,14 @@ import (
 )
 
 type Lang struct {
-	Interlock   string `json:"interlock"`
-	LogLvl      string `json:"log_level"`
-	Lang        string `json:"language"`
-	Station     string `json:"station"`
-	Route       string `json:"route"`
-	StartupTime string `json:"startup_time"`
-
+	RouteEventMsg       string `json:"route_event_msg"`
 	SetOptMsg           string `json:"setting_option_msg"`
 	UnspecOptMsg        string `json:"unspecified_option_msg"`
-	WrgOptMsg           string `json:"wrong_option_msg"`
-	LoadingMsg          string `json:"loading_msg"`
-	ConnMongoMsg        string `json:"connect_mongodb_msg"`
+	IllegalOptMsg       string `json:"illegal_option_msg"`
+	LoadMsg             string `json:"load_msg"`
+	CancelEvent         string `json:"cancel_event"`
+	FoundEvent          string `json:"found_event"`
+	ConnMsg             string `json:"connect_msg"`
 	OpenFileFailMsg     string `json:"open_file_failed_msg"`
 	ReadFileFailMsg     string `json:"read_file_failed_msg"`
 	CloseFileFailMsg    string `json:"close_file_failed_msg"`
@@ -35,13 +31,13 @@ func NewLang(langCode string) (*Lang, error) {
 	var lang Lang
 	completePath := i18nPath + langCode + ".json"
 	if jsonFile, err := os.Open(completePath); err != nil {
-		return nil, errors.New(replace(Msg.OpenFileFailMsg, completePath))
+		return nil, errors.New(Msg.OpenFileFailMsg)
 	} else if byteValue, err := ioutil.ReadAll(jsonFile); err != nil {
-		return nil, errors.New(replace(Msg.ReadFileFailMsg, completePath))
+		return nil, errors.New(Msg.ReadFileFailMsg)
 	} else if err = jsonFile.Close(); err != nil {
-		return nil, errors.New(replace(Msg.CloseFileFailMsg, completePath))
+		return nil, errors.New(Msg.CloseFileFailMsg)
 	} else if err := json.Unmarshal(byteValue, &lang); err != nil {
-		return nil, errors.New(replace(Msg.ParseFileFailMsg, completePath))
+		return nil, errors.New(Msg.ParseFileFailMsg)
 	}
 	return &lang, nil
 }

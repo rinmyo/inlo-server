@@ -1,26 +1,25 @@
 package main
 
-import log "github.com/sirupsen/logrus"
+import (
+	log "github.com/sirupsen/logrus"
+	"pracserver/src/interlock"
+	"time"
+)
 
 func main() {
-	if btn, err := getRouteByBtn("XLA", "S6LA"); err != nil {
+	if btn, err := interlock.GetRouteByBtn("XLA", "S6LA"); err != nil {
 		log.Error(err)
 	} else {
-		log.Info(btn)
-
-		log.Info(btn.isLiving())
-		if err := btn.found(); err != nil {
-			log.Error(err)
-		} else {
-			log.Info("new living sinro", btn.Id)
+		if ok := btn.Found(); ok {
+			if btn, err := interlock.GetRouteByBtn("XLA", "S6LA"); err != nil {
+				log.Error(err)
+			} else {
+				if ok := btn.Found(); ok {
+					timer := time.NewTimer(5 * time.Second)
+					<-timer.C
+					btn.Cancel()
+				}
+			}
 		}
-
-		log.Info(btn.isLiving())
-		if err := btn.found(); err != nil {
-			log.Error(err)
-		} else {
-			log.Info("new living sinro", btn.Id)
-		}
-
 	}
 }

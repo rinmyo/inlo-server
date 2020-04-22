@@ -5,7 +5,6 @@ import (
 	sys "github.com/shirou/gopsutil/host"
 	log "github.com/sirupsen/logrus"
 	"github.com/weekface/mgorus"
-	"pracserver/src/tool"
 	"time"
 )
 
@@ -26,8 +25,6 @@ const (
 var (
 	config *toml.Tree
 	Msg    *Lang
-
-	replace = tool.Replace
 )
 
 func StationName() string {
@@ -36,11 +33,13 @@ func StationName() string {
 
 func logLevel() log.Level {
 	if lvl := config.Get(serverLogLevel); lvl == nil {
-		log.Warn(replace(Msg.UnspecOptMsg, Msg.LogLvl, defaultLevel.String()))
+		log.WithField("Option", userLang).
+			Warn(Msg.UnspecOptMsg)
 		return defaultLevel
 	} else {
 		if v, err := log.ParseLevel(lvl.(string)); err != nil {
-			log.Error(replace(Msg.WrgOptMsg, lvl.(string), Msg.LogLvl, defaultLevel.String()))
+			log.WithField("Option", serverLogLevel).
+				Error(Msg.IllegalOptMsg)
 			return defaultLevel
 		} else {
 			return v
@@ -55,13 +54,16 @@ func setLogLevel(level log.Level) {
 func language() (*Lang, string) {
 	if v := config.Get(userLang); v != nil {
 		if lang, err := NewLang(v.(string)); err != nil {
-			log.Error(replace(Msg.WrgOptMsg, v.(string), Msg.Lang, defaultLangCode))
+			log.WithField("Option", userLang).
+				Error(Msg.IllegalOptMsg, ":")
+			log.Error(err)
 			return defaultLang, defaultLangCode
 		} else {
 			return lang, v.(string)
 		}
 	} else {
-		log.Warn(replace(Msg.UnspecOptMsg, Msg.Lang, defaultLangCode))
+		log.WithField("Option", userLang).
+			Warn(Msg.UnspecOptMsg)
 		return defaultLang, defaultLangCode
 	}
 }
@@ -112,22 +114,26 @@ func loadConfig() {
 
 		if lang, code := language(); lang != defaultLang {
 			setLanguage(lang)
-			log.Info(replace(Msg.SetOptMsg, Msg.Lang, code))
+			log.WithField(userLang, code).Info(Msg.SetOptMsg)
 		}
 
 		if lvl := logLevel(); lvl != defaultLevel {
 			setLogLevel(lvl)
-			log.Info(replace(Msg.SetOptMsg, Msg.LogLvl, lvl.String()))
+			log.WithField(serverLogLevel, lvl.String()).Info(Msg.SetOptMsg)
 		}
 
 		if hook, url, db, err := mongoHook(); err != nil {
-			log.Error(err)
+			log.WithField("Url", url).
+				WithField("Database", db).
+				Error(err)
 		} else {
 			setMongoHook(hook)
-			log.Info(replace(Msg.ConnMongoMsg, url, db))
+			log.WithField("Url", url).
+				WithField("Database", db).
+				Info(Msg.ConnMsg)
 		}
 
-		log.Info(Msg.Station, StationName())
+		log.WithField("Station", StationName()).Info(Msg.LoadMsg)
 		logEnvInfo()
 	}
 }
