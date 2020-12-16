@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package prac.net;
+
+option go_package = ".;pb";
+option java_package = "dev.glycine.pracstation.pb";
+option java_multiple_files = true;
+
+message Turnout {
+  enum TurnoutState{
+    UNKNOWN = 0;
+    NORMAL = 1;
+    REVERSED = 2;
+  }
+  string id = 1;
+  TurnoutState state = 2;
+}

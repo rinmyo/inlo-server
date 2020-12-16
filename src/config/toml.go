@@ -8,4 +8,7 @@ const (
 	mongoHost     = "mongodb.host"
 	mongoPort     = "mongodb.port"
 	mongoDatabase = "mongodb.database"
+
+	userId       = "user.id"
+	userPassword = "user.password"
 )

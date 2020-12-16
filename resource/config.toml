@@ -2,8 +2,13 @@
 name = "test station"
 
 [server]
-log_level = "debugsd"
+log_level = "debug"
+language = "en-US"
 
 [mongodb]
 host = "localhost"
 port = "27017"
+
+[user]
+id = "admin"
+password = "123"

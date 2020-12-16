@@ -1,4 +1,806 @@
 {
+  "IG-X3JG": {
+    "buttons": [
+      "XLA",
+      "S3LA"
+    ],
+    "section": [
+      "3-7DG",
+      "9-13DG",
+      "IG"
+    ],
+    "turnout": [
+      "1/3",
+      "5/7",
+      "(9/11)",
+      "13/15"
+    ],
+    "signals": [
+      "SI-U"
+    ],
+    "conflicts": [
+      "IG-S1LQ"
+    ],
+    "enemies": [
+      "S1LQ-IG"
+    ]
+  },
+  "3G-X3JG": {
+    "buttons": [
+      "XLA",
+      "SILA"
+    ],
+    "section": [
+      "3-7DG",
+      "9-13DG",
+      "15-17DG",
+      "15/29WG",
+      "29DG",
+      "3G"
+    ],
+    "turnout": [
+      "1/3",
+      "5/7",
+      "9/11",
+      "(13/15)",
+      "29/31"
+    ],
+    "signals": [
+      "S3-UU"
+    ],
+    "conflicts": [
+      "3G-S1LQ"
+    ],
+    "enemies": [
+      "S1LQ-3G"
+    ]
+  },
+  "IIG-X3JG": {
+    "buttons": [
+      "XLA",
+      "SIILA"
+    ],
+    "section": [
+      "3-7DG",
+      "9-13DG",
+      "11DG",
+      "19DG",
+      "IIG"
+    ],
+    "turnout": [
+      "1/3",
+      "5/7",
+      "(9/11)",
+      "19/21"
+    ],
+    "signals": [
+      "SII-UU"
+    ],
+    "conflicts": [
+      "IIG-S1LQ"
+    ],
+    "enemies": [
+      "S1LQ-IIG"
+    ]
+  },
+  "4G-X3JG": {
+    "buttons": [
+      "XLA",
+      "S4LA"
+    ],
+    "section": [
+      "3-7DG",
+      "9-13DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "4G"
+    ],
+    "turnout": [
+      "1/3",
+      "5/7",
+      "(9/11)",
+      "(19/21)",
+      "27/33"
+    ],
+    "signals": [
+      "S4-UU"
+    ],
+    "conflicts": [
+      "4G-S1LQ"
+    ],
+    "enemies": [
+      "4G-S1LQ"
+    ]
+  },
+  "6G-X3JG": {
+    "buttons": [
+      "XLA",
+      "S6LA"
+    ],
+    "section": [
+      "3-7DG",
+      "9-13DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "6G"
+    ],
+    "turnout": [
+      "1/3",
+      "5/7",
+      "(9/11)",
+      "(19/21)",
+      "(27/33)"
+    ],
+    "signals": [
+      "S6-UU"
+    ],
+    "conflicts": [
+      "6G-S1LQ"
+    ],
+    "enemies": [
+      "S1LQ-6G"
+    ]
+  },
+  "8G-X3JG": {
+    "buttons": [
+      "XLA",
+      "S8LA"
+    ],
+    "section": [
+      "3-7DG",
+      "9-13DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "37DG",
+      "8G"
+    ],
+    "turnout": [
+      "1/3",
+      "5/7",
+      "(9/11)",
+      "(19/21)",
+      "(27/33)",
+      "37"
+    ],
+    "signals": [
+      "S8-UU"
+    ],
+    "conflicts": [
+      "8G-S1LQ"
+    ],
+    "enemies": [
+      "S1LQ-8G"
+    ]
+  },
+  "10G-X3JG": {
+    "buttons": [
+      "XLA",
+      "S10LA"
+    ],
+    "section": [
+      "3-7DG",
+      "9-13DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "37DG",
+      "10G"
+    ],
+    "turnout": [
+      "1/3",
+      "5/7",
+      "(9/11)",
+      "(19/21)",
+      "(27/33)",
+      "(33/37)",
+      "(37)"
+    ],
+    "signals": [
+      "S10-UU"
+    ],
+    "conflicts": [
+      "10G-S1LQ"
+    ],
+    "enemies": [
+      "S1LQ-10G"
+    ]
+  },
+  "IG-S1LQ": {
+    "buttons": [
+      "XFLA",
+      "SILA"
+    ],
+    "section": [
+      "1DG",
+      "3-7DG",
+      "9-13DG",
+      "IG"
+    ],
+    "turnout": [
+      "(1/3)",
+      "5/7",
+      "9/11",
+      "13/15"
+    ],
+    "signals": [
+      "SI-U"
+    ],
+    "conflicts": [
+      "IG-X3JG"
+    ],
+    "enemies": [
+      "X3JG-IG"
+    ]
+  },
+  "3G-S1LQ": {
+    "buttons": [
+      "XFLA",
+      "S3LA"
+    ],
+    "section": [
+      "1DG",
+      "3-7DG",
+      "9-13DG",
+      "15-17DG",
+      "15/29WG",
+      "29DG",
+      "3G"
+    ],
+    "turnout": [
+      "(1/3)",
+      "5/7",
+      "9/11",
+      "(13/15)",
+      "29/31"
+    ],
+    "signals": [
+      "S3-UU"
+    ],
+    "conflicts": [
+      "3G-X3JG"
+    ],
+    "enemies": [
+      "X3JG-3G"
+    ]
+  },
+  "IIG-S1LQ": {
+    "buttons": [
+      "XFLA",
+      "SIILA"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG",
+      "IIG"
+    ],
+    "turnout": [
+      "1/3",
+      "9/11",
+      "19/21"
+    ],
+    "signals": [
+      "SII-UU"
+    ],
+    "conflicts": [
+      "IIG-X3JG"
+    ],
+    "enemies": [
+      "X3JG-IIG"
+    ]
+  },
+  "4G-S1LQ": {
+    "buttons": [
+      "XFLA",
+      "S4LA"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "4G"
+    ],
+    "turnout": [
+      "1/3",
+      "9/11",
+      "(19/21)",
+      "27/33"
+    ],
+    "signals": [
+      "S4-UU"
+    ],
+    "conflicts": [
+      "4G-X3JG"
+    ],
+    "enemies": [
+      "X3JG-4G"
+    ]
+  },
+  "6G-S1LQ": {
+    "buttons": [
+      "XFLA",
+      "S6LA"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "6G"
+    ],
+    "turnout": [
+      "1/3",
+      "9/11",
+      "(19/21)",
+      "(27/33)"
+    ],
+    "signals": [
+      "S6-UU"
+    ],
+    "conflicts": [
+      "6G-X3JG"
+    ],
+    "enemies": [
+      "X3JG-6G"
+    ]
+  },
+  "8G-S1LQ": {
+    "buttons": [
+      "XFLA",
+      "S8LA"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "37DG",
+      "8G"
+    ],
+    "turnout": [
+      "1/3",
+      "9/11",
+      "(19/21)",
+      "(27/33)",
+      "37"
+    ],
+    "signals": [
+      "S8-UU"
+    ],
+    "conflicts": [
+      "8G-X3JG"
+    ],
+    "enemies": [
+      "X3JG-8G"
+    ]
+  },
+  "10G-S1LQ": {
+    "buttons": [
+      "XFLA",
+      "S10LA"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "37DG",
+      "10G"
+    ],
+    "turnout": [
+      "1/3",
+      "9/11",
+      "(19/21)",
+      "(27/33)",
+      "(37)"
+    ],
+    "signals": [
+      "S10-UU"
+    ],
+    "conflicts": [
+      "10G-X3JG"
+    ],
+    "enemies": [
+      "X3JG-10G"
+    ]
+  },
+  "IG-X1LQ": {
+    "buttons": [
+      "SFLA",
+      "XILA"
+    ],
+    "section": [
+      "2DG",
+      "8DG",
+      "14DG",
+      "IG"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "14"
+    ],
+    "signals": [
+      "XI-U"
+    ],
+    "conflicts": [
+      "IG-S3JG"
+    ],
+    "enemies": [
+      "X1LQ-IG"
+    ]
+  },
+  "3G-X1LQ": {
+    "buttons": [
+      "SFLA",
+      "X3LA"
+    ],
+    "section": [
+      "2DG",
+      "8DG",
+      "14DG",
+      "3G"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "(14)"
+    ],
+    "signals": [
+      "X3-UU"
+    ],
+    "conflicts": [
+      "3G-S3JG"
+    ],
+    "enemies": [
+      "S3JG-3G"
+    ]
+  },
+  "IIG-X1LQ": {
+    "buttons": [
+      "SFLA",
+      "XIILA"
+    ],
+    "section": [
+      "2DG",
+      "4DG",
+      "6-10DG",
+      "IIG"
+    ],
+    "turnout": [
+      "(2/4)",
+      "6/8",
+      "10/12"
+    ],
+    "signals": [
+      "XII-UU"
+    ],
+    "conflicts": [
+      "IIG-S3JG"
+    ],
+    "enemies": [
+      "S3JG-IIG"
+    ]
+  },
+  "4G-X1LQ": {
+    "buttons": [
+      "SFLA",
+      "X4LA"
+    ],
+    "section": [
+      "2DG",
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "18DG",
+      "4G"
+    ],
+    "turnout": [
+      "(2/4)",
+      "6/8",
+      "(10/12)",
+      "18"
+    ],
+    "signals": [
+      "X4-UU"
+    ],
+    "conflicts": [
+      "4G-S3JG"
+    ],
+    "enemies": [
+      "S3JG-4G"
+    ]
+  },
+  "6G-X1LQ": {
+    "buttons": [
+      "SFLA",
+      "X6LA"
+    ],
+    "section": [
+      "2DG",
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "18DG",
+      "6G"
+    ],
+    "turnout": [
+      "(2/4)",
+      "6/8",
+      "(10/12)",
+      "(18)"
+    ],
+    "signals": [
+      "X6-UU"
+    ],
+    "conflicts": [
+      "6G-S3JG"
+    ],
+    "enemies": [
+      "S3JG-6G"
+    ]
+  },
+  "8G-X1LQ": {
+    "buttons": [
+      "SFLA",
+      "X8LA"
+    ],
+    "section": [
+      "2DG",
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "16DG",
+      "8G"
+    ],
+    "turnout": [
+      "(2/4)",
+      "6/8",
+      "(10/12)",
+      "16"
+    ],
+    "signals": [
+      "X8-UU"
+    ],
+    "conflicts": [
+      "8G-S3JG"
+    ],
+    "enemies": [
+      "S3JG-8G"
+    ]
+  },
+  "10G-X1LQ": {
+    "buttons": [
+      "SFLA",
+      "X10LA"
+    ],
+    "section": [
+      "2DG",
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "16DG",
+      "10G"
+    ],
+    "turnout": [
+      "(2/4)",
+      "6/8",
+      "(10/12)",
+      "(16)"
+    ],
+    "signals": [
+      "X10-UU"
+    ],
+    "conflicts": [
+      "10G-S3JG"
+    ],
+    "enemies": [
+      "S3JG-10G"
+    ]
+  },
+  "IG-S3JG": {
+    "buttons": [
+      "SLA",
+      "XILA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "8DG",
+      "14DG",
+      "IG"
+    ],
+    "turnout": [
+      "2/4",
+      "(6/8)",
+      "14"
+    ],
+    "signals": [
+      "XI-U"
+    ],
+    "conflicts": [
+      "IG-X1LQ"
+    ],
+    "enemies": [
+      "X1LQ-IG"
+    ]
+  },
+  "3G-S3JG": {
+    "buttons": [
+      "SLA",
+      "X3LA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "8DG",
+      "14DG",
+      "3G"
+    ],
+    "turnout": [
+      "2/4",
+      "(6/8)",
+      "(14)"
+    ],
+    "signals": [
+      "X3-UU"
+    ],
+    "conflicts": [
+      "3G-X1LQ"
+    ],
+    "enemies": [
+      "X1LQ-3G"
+    ]
+  },
+  "IIG-S3JG": {
+    "buttons": [
+      "SLA",
+      "XIILA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "IIG"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "10/12"
+    ],
+    "signals": [
+      "XII-UU"
+    ],
+    "conflicts": [
+      "IIG-X1LQ"
+    ],
+    "enemies": [
+      "X1LQ-IIG"
+    ]
+  },
+  "4G-S3JG": {
+    "buttons": [
+      "SLA",
+      "X4LA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "18DG",
+      "4G"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "(10/12)",
+      "18"
+    ],
+    "signals": [
+      "X4-UU"
+    ],
+    "conflicts": [
+      "4G-X1LQ"
+    ],
+    "enemies": [
+      "X1LQ-4G"
+    ]
+  },
+  "6G-S3JG": {
+    "buttons": [
+      "SLA",
+      "X6LA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "18DG",
+      "6G"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "(10/12)",
+      "(18)"
+    ],
+    "signals": [
+      "X6-UU"
+    ],
+    "conflicts": [
+      "6G-X1LQ"
+    ],
+    "enemies": [
+      "X1LQ-6G"
+    ]
+  },
+  "8G-S3JG": {
+    "buttons": [
+      "SLA",
+      "X8LA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "16DG",
+      "8G"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "(10/12)",
+      "16"
+    ],
+    "signals": [
+      "X8-UU"
+    ],
+    "conflicts": [
+      "8G-X1LQ"
+    ],
+    "enemies": [
+      "X1LQ-8G"
+    ]
+  },
+  "10G-S3JG": {
+    "buttons": [
+      "SLA",
+      "X10LA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "16DG",
+      "10DG"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "(10/12)",
+      "(16)"
+    ],
+    "signals": [
+      "X10-UU"
+    ],
+    "conflicts": [
+      "10G-X1LQ"
+    ],
+    "enemies": [
+      "X1LQ-10G"
+    ]
+  },
   "X3JG-IG": {
     "buttons": [
       "XLA",
@@ -18,9 +820,21 @@
     "signals": [
       "X-U"
     ],
+    "conflicts": [
+      "X3JG-IIG",
+      "X3JG-3G",
+      "X3JG-4G",
+      "X3JG-6G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-3G"
+    ],
     "enemies": [
-      "D9",
-      "S1"
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "S3JG-IG",
+      "S3JG-3G",
+      "S1LQ-IG"
     ]
   },
   "X3JG-3G": {
@@ -31,7 +845,8 @@
     "section": [
       "3-7DG",
       "9-13DG",
-      "15DG",
+      "15-17DG",
+      "15/29WG",
       "29DG",
       "3G"
     ],
@@ -45,11 +860,21 @@
     "signals": [
       "X-UU"
     ],
+    "conflicts": [
+      "X3JG-IG",
+      "X3JG-IIG",
+      "X3JG-4G",
+      "X3JG-6G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-IG"
+    ],
     "enemies": [
-      "D9",
-      "D19",
-      "D25",
-      "S3"
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "S3JG-IG",
+      "S3JG-3G",
+      "S1LQ-IG"
     ]
   },
   "X3JG-IIG": {
@@ -73,10 +898,32 @@
     "signals": [
       "X-UU"
     ],
+    "conflicts": [
+      "X3JG-IG",
+      "X3JG-3G",
+      "X3JG-4G",
+      "X3JG-6G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-IG",
+      "S1LQ-3G",
+      "S1LQ-4G",
+      "S1LQ-6G",
+      "S1LQ-8G",
+      "S1LQ-10G"
+    ],
     "enemies": [
-      "D9",
-      "D21",
-      "SII"
+      "X1LQ-IIG",
+      "X1LQ-4G",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-IIG",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S3JG-8G",
+      "S3JG-10G",
+      "S1LQ-IIG"
     ]
   },
   "X3JG-4G": {
@@ -103,11 +950,24 @@
     "signals": [
       "X-UU"
     ],
+    "conflicts": [
+      "X3JG-IG",
+      "X3JG-IIG",
+      "X3JG-3G",
+      "X3JG-6G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-IIG",
+      "S1LQ-6G",
+      "S1LQ-8G",
+      "S1LQ-10G"
+    ],
     "enemies": [
-      "D9",
-      "D21",
-      "D27",
-      "S4"
+      "X1LQ-6G",
+      "X1LQ-4G",
+      "S3JG-6G",
+      "S3JG-4G",
+      "S1LQ-4G"
     ]
   },
   "X3JG-6G": {
@@ -134,12 +994,24 @@
     "signals": [
       "X-UU"
     ],
+    "conflicts": [
+      "X3JG-IG",
+      "X3JG-IIG",
+      "X3JG-3G",
+      "X3JG-4G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-IIG",
+      "S1LQ-4G",
+      "S1LQ-8G",
+      "S1LQ-10G"
+    ],
     "enemies": [
-      "D9",
-      "D21",
-      "D27",
-      "S4",
-      "S6"
+      "X1LQ-6G",
+      "X1LQ-4G",
+      "S3JG-6G",
+      "S3JG-4G",
+      "S1LQ-6G"
     ]
   },
   "X3JG-8G": {
@@ -168,11 +1040,24 @@
     "signals": [
       "X-UU"
     ],
+    "conflicts": [
+      "X3JG-IG",
+      "X3JG-IIG",
+      "X3JG-3G",
+      "X3JG-4G",
+      "X3JG-6G",
+      "X3JG-10G",
+      "S1LQ-IIG",
+      "S1LQ-4G",
+      "S1LQ-6G",
+      "S1LQ-10G"
+    ],
     "enemies": [
-      "D9",
-      "D21",
-      "D27",
-      "S8"
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-8G",
+      "S3JG-10G",
+      "S1LQ-8G"
     ]
   },
   "X3JG-10G": {
@@ -202,11 +1087,1848 @@
     "signals": [
       "X-UU"
     ],
+    "conflicts": [
+      "X3JG-IG",
+      "X3JG-IIG",
+      "X3JG-3G",
+      "X3JG-4G",
+      "X3JG-6G",
+      "X3JG-8G",
+      "S1LQ-IIG",
+      "S1LQ-4G",
+      "S1LQ-6G",
+      "S1LQ-8G"
+    ],
     "enemies": [
-      "D9",
-      "D21",
-      "D27",
-      "S10"
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-8G",
+      "S3JG-10G",
+      "S1LQ-10G"
+    ]
+  },
+  "S1LQ-IG": {
+    "buttons": [
+      "XFLA",
+      "SILA"
+    ],
+    "section": [
+      "1DG",
+      "3-7DG",
+      "9-13DG",
+      "IG"
+    ],
+    "turnout": [
+      "(1/3)",
+      "5/7",
+      "9/11",
+      "13/15"
+    ],
+    "signals": [
+      "XF-U"
+    ],
+    "conflicts": [
+      "X3JG-IIG",
+      "X3JG-3G",
+      "X3JG-4G",
+      "X3JG-6G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-3G"
+    ],
+    "enemies": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "S3JG-IG",
+      "S3JG-3G",
+      "X3JG-IG"
+    ]
+  },
+  "S1LQ-3G": {
+    "buttons": [
+      "XFLA",
+      "S3LA"
+    ],
+    "section": [
+      "1DG",
+      "3-7DG",
+      "9-13DG",
+      "15-17DG",
+      "15/29WG",
+      "29DG",
+      "3G"
+    ],
+    "turnout": [
+      "(1/3)",
+      "5/7",
+      "9/11",
+      "(13/15)",
+      "29/31"
+    ],
+    "signals": [
+      "XF-UU"
+    ],
+    "conflicts": [
+      "X3JG-IG",
+      "X3JG-IIG",
+      "X3JG-4G",
+      "X3JG-6G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-IG"
+    ],
+    "enemies": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "S3JG-IG",
+      "S3JG-3G",
+      "X3JG-IG"
+    ]
+  },
+  "S1LQ-IIG": {
+    "buttons": [
+      "XFLA",
+      "SIILA"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG",
+      "IIG"
+    ],
+    "turnout": [
+      "1/3",
+      "9/11",
+      "19/21"
+    ],
+    "signals": [
+      "XF-UU"
+    ],
+    "conflicts": [
+      "X3JG-4G",
+      "X3JG-6G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-4G",
+      "S1LQ-6G",
+      "S1LQ-8G",
+      "S1LQ-10G"
+    ],
+    "enemies": [
+      "X1LQ-IIG",
+      "X1LQ-4G",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-IIG",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S3JG-8G",
+      "S3JG-10G",
+      "X3JG-IIG"
+    ]
+  },
+  "S1LQ-4G": {
+    "buttons": [
+      "XFLA",
+      "S4LA"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "4G"
+    ],
+    "turnout": [
+      "1/3",
+      "9/11",
+      "(19/21)",
+      "27/33"
+    ],
+    "signals": [
+      "XF-UU"
+    ],
+    "conflicts": [
+      "X3JG-6G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-6G",
+      "S1LQ-8G",
+      "S1LQ-10G"
+    ],
+    "enemies": [
+      "X1LQ-6G",
+      "X1LQ-4G",
+      "S3JG-6G",
+      "S3JG-4G",
+      "X3JG-4G"
+    ]
+  },
+  "S1LQ-6G": {
+    "buttons": [
+      "XFLA",
+      "S6LA"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "6G"
+    ],
+    "turnout": [
+      "1/3",
+      "9/11",
+      "(19/21)",
+      "(27/33)"
+    ],
+    "signals": [
+      "XF-UU"
+    ],
+    "conflicts": [
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-8G",
+      "S1LQ-10G"
+    ],
+    "enemies": [
+      "X1LQ-6G",
+      "X1LQ-4G",
+      "S3JG-6G",
+      "S3JG-4G",
+      "X3JG-6G"
+    ]
+  },
+  "S1LQ-8G": {
+    "buttons": [
+      "XFLA",
+      "S8LA"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "37DG",
+      "8G"
+    ],
+    "turnout": [
+      "1/3",
+      "9/11",
+      "(19/21)",
+      "(27/33)",
+      "37"
+    ],
+    "signals": [
+      "XF-UU"
+    ],
+    "conflicts": [
+      "X3JG-10G",
+      "S1LQ-10G"
+    ],
+    "enemies": [
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-8G",
+      "S3JG-10G",
+      "X3JG-8G"
+    ]
+  },
+  "S1LQ-10G": {
+    "buttons": [
+      "XFLA",
+      "S10LA"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "37DG",
+      "10G"
+    ],
+    "turnout": [
+      "1/3",
+      "9/11",
+      "(19/21)",
+      "(27/33)",
+      "(37)"
+    ],
+    "signals": [
+      "XF-UU"
+    ],
+    "conflicts": [
+      "X3JG-8G",
+      "S1LQ-8G"
+    ],
+    "enemies": [
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-8G",
+      "S3JG-10G",
+      "X3JG-10G"
+    ]
+  },
+  "X1LQ-IG": {
+    "buttons": [
+      "SFLA",
+      "XILA"
+    ],
+    "section": [
+      "2DG",
+      "8DG",
+      "14DG",
+      "IG"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "14"
+    ],
+    "signals": [
+      "SF-U"
+    ],
+    "conflicts": [
+      "X1LQ-IIG",
+      "X1LQ-3G",
+      "X1LQ-4G",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG"
+    ],
+    "enemies": [
+      "X3JG-IG",
+      "X3JG-3G",
+      "S1LQ-IG",
+      "S1LQ-3G",
+      "X1LQ-IG"
+    ]
+  },
+  "X1LQ-3G": {
+    "buttons": [
+      "SFLA",
+      "X3LA"
+    ],
+    "section": [
+      "2DG",
+      "8DG",
+      "14DG",
+      "3G"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "(14)"
+    ],
+    "signals": [
+      "SF-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IIG",
+      "X1LQ-IG",
+      "X1LQ-4G",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG"
+    ],
+    "enemies": [
+      "X3JG-IG",
+      "X3JG-3G",
+      "S1LQ-IG",
+      "S1LQ-3G",
+      "X1LQ-3G"
+    ]
+  },
+  "X1LQ-IIG": {
+    "buttons": [
+      "SFLA",
+      "XIILA"
+    ],
+    "section": [
+      "2DG",
+      "4DG",
+      "6-10DG",
+      "IIG"
+    ],
+    "turnout": [
+      "(2/4)",
+      "6/8",
+      "10/12"
+    ],
+    "signals": [
+      "SF-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "X1LQ-4G",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG"
+    ],
+    "enemies": [
+      "X3JG-IIG",
+      "X3JG-4G",
+      "X3JG-6G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-IIG",
+      "S1LQ-4G",
+      "S1LQ-6G",
+      "S1LQ-8G",
+      "S1LQ-10G",
+      "X1LQ-IIG"
+    ]
+  },
+  "X1LQ-4G": {
+    "buttons": [
+      "SFLA",
+      "X4LA"
+    ],
+    "section": [
+      "2DG",
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "18DG",
+      "4G"
+    ],
+    "turnout": [
+      "(2/4)",
+      "6/8",
+      "(10/12)",
+      "18"
+    ],
+    "signals": [
+      "SF-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "X1LQ-IIG",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG",
+      "S3JG-IIG",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S3JG-8G",
+      "S3JG-10G"
+    ],
+    "enemies": [
+      "X3JG-6G",
+      "X3JG-4G",
+      "S1LQ-6G",
+      "S1LQ-4G",
+      "X1LQ-4G"
+    ]
+  },
+  "X1LQ-6G": {
+    "buttons": [
+      "SFLA",
+      "X6LA"
+    ],
+    "section": [
+      "2DG",
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "18DG",
+      "6G"
+    ],
+    "turnout": [
+      "(2/4)",
+      "6/8",
+      "(10/12)",
+      "(18)"
+    ],
+    "signals": [
+      "SF-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "X1LQ-IIG",
+      "X1LQ-4G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG",
+      "S3JG-IIG",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S3JG-8G",
+      "S3JG-10G"
+    ],
+    "enemies": [
+      "X3JG-6G",
+      "X3JG-4G",
+      "S1LQ-6G",
+      "S1LQ-4G",
+      "X1LQ-6G"
+    ]
+  },
+  "X1LQ-8G": {
+    "buttons": [
+      "SFLA",
+      "X8LA"
+    ],
+    "section": [
+      "2DG",
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "16DG",
+      "8G"
+    ],
+    "turnout": [
+      "(2/4)",
+      "6/8",
+      "(10/12)",
+      "16"
+    ],
+    "signals": [
+      "SF-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "X1LQ-IIG",
+      "X1LQ-6G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG",
+      "S3JG-IIG",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S3JG-8G",
+      "S3JG-10G"
+    ],
+    "enemies": [
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-8G",
+      "S1LQ-10G",
+      "X1LQ-8G"
+    ]
+  },
+  "X1LQ-10G": {
+    "buttons": [
+      "SFLA",
+      "X10LA"
+    ],
+    "section": [
+      "2DG",
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "16DG",
+      "10G"
+    ],
+    "turnout": [
+      "(2/4)",
+      "6/8",
+      "(10/12)",
+      "(16)"
+    ],
+    "signals": [
+      "SF-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "X1LQ-IIG",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "S3JG-3G",
+      "S3JG-IG",
+      "S3JG-IIG",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S3JG-8G",
+      "S3JG-10G"
+    ],
+    "enemies": [
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-8G",
+      "S1LQ-10G",
+      "X1LQ-10G"
+    ]
+  },
+  "S3JG-IG": {
+    "buttons": [
+      "SLA",
+      "XILA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "8DG",
+      "14DG",
+      "IG"
+    ],
+    "turnout": [
+      "2/4",
+      "(6/8)",
+      "14"
+    ],
+    "signals": [
+      "S-U"
+    ],
+    "conflicts": [
+      "X1LQ-IIG",
+      "X1LQ-3G",
+      "X1LQ-4G",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG"
+    ],
+    "enemies": [
+      "X3JG-IG",
+      "X3JG-3G",
+      "S1LQ-IG",
+      "S1LQ-3G",
+      "X1LQ-IG"
+    ]
+  },
+  "S3JG-3G": {
+    "buttons": [
+      "SLA",
+      "X3LA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "8DG",
+      "14DG",
+      "3G"
+    ],
+    "turnout": [
+      "2/4",
+      "(6/8)",
+      "(14)"
+    ],
+    "signals": [
+      "S-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IIG",
+      "X1LQ-IG",
+      "X1LQ-4G",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG"
+    ],
+    "enemies": [
+      "X3JG-IG",
+      "X3JG-3G",
+      "S1LQ-IG",
+      "S1LQ-3G",
+      "X1LQ-3G"
+    ]
+  },
+  "S3JG-IIG": {
+    "buttons": [
+      "SLA",
+      "XIILA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "IIG"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "10/12"
+    ],
+    "signals": [
+      "S-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "X1LQ-4G",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG"
+    ],
+    "enemies": [
+      "X3JG-IIG",
+      "X3JG-4G",
+      "X3JG-6G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-IIG",
+      "S1LQ-4G",
+      "S1LQ-6G",
+      "S1LQ-8G",
+      "S1LQ-10G",
+      "X1LQ-IIG"
+    ]
+  },
+  "S3JG-4G": {
+    "buttons": [
+      "SLA",
+      "X4LA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "18DG",
+      "4G"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "(10/12)",
+      "18"
+    ],
+    "signals": [
+      "S-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "X1LQ-IIG",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG",
+      "S3JG-IIG",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S3JG-8G",
+      "S3JG-10G"
+    ],
+    "enemies": [
+      "X3JG-6G",
+      "X3JG-4G",
+      "S1LQ-6G",
+      "S1LQ-4G",
+      "X1LQ-4G"
+    ]
+  },
+  "S3JG-6G": {
+    "buttons": [
+      "SLA",
+      "X6LA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "18DG",
+      "6G"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "(10/12)",
+      "(18)"
+    ],
+    "signals": [
+      "S-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "X1LQ-IIG",
+      "X1LQ-4G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG",
+      "S3JG-IIG",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S3JG-8G",
+      "S3JG-10G"
+    ],
+    "enemies": [
+      "X3JG-6G",
+      "X3JG-4G",
+      "S1LQ-6G",
+      "S1LQ-4G",
+      "X1LQ-6G"
+    ]
+  },
+  "S3JG-8G": {
+    "buttons": [
+      "SLA",
+      "X8LA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "16DG",
+      "8G"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "(10/12)",
+      "16"
+    ],
+    "signals": [
+      "S-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "X1LQ-IIG",
+      "X1LQ-6G",
+      "X1LQ-10G",
+      "S3JG-3G",
+      "S3JG-IG",
+      "S3JG-IIG",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S3JG-8G",
+      "S3JG-10G"
+    ],
+    "enemies": [
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-8G",
+      "S1LQ-10G",
+      "X1LQ-8G"
+    ]
+  },
+  "S3JG-10G": {
+    "buttons": [
+      "SLA",
+      "X10LA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "16DG",
+      "10DG"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "(10/12)",
+      "(16)"
+    ],
+    "signals": [
+      "S-UU"
+    ],
+    "conflicts": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "X1LQ-IIG",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "S3JG-3G",
+      "S3JG-IG",
+      "S3JG-IIG",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S3JG-8G",
+      "S3JG-10G"
+    ],
+    "enemies": [
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-8G",
+      "S1LQ-10G",
+      "X1LQ-10G"
+    ]
+  },
+  "D3-D11": {
+    "buttons": [
+      "D3A",
+      "D11A"
+    ],
+    "section": [
+      "D3G",
+      "5DG",
+      "5/17WG"
+    ],
+    "turnout": [
+      "5/7"
+    ],
+    "signals": [
+      "D3-B"
+    ],
+    "conflicts": [
+      "D3-D9"
+    ],
+    "enemies": [
+      "D25-D11"
+    ]
+  },
+  "D3-D9": {
+    "buttons": [
+      "D3A",
+      "D9A"
+    ],
+    "section": [
+      "D3G",
+      "5DG",
+      "3-7DG",
+      "9-13DG"
+    ],
+    "turnout": [
+      "(5/7)"
+    ],
+    "signals": [
+      "D3-B"
+    ],
+    "conflicts": [
+      "D3-D11"
+    ],
+    "enemies": [
+      "IG-D9"
+    ]
+  },
+  "D13-D7": {
+    "buttons": [
+      "D7A",
+      "D13A"
+    ],
+    "section": [
+      "17-23DG"
+    ],
+    "turnout": [
+      "(17)",
+      "(23)"
+    ],
+    "signals": [
+      "D13-B"
+    ],
+    "conflicts": [],
+    "enemies": []
+  },
+  "D15-D7": {
+    "buttons": [
+      "D7A",
+      "D15A"
+    ],
+    "section": [
+      "17-23DG",
+      "25DG"
+    ],
+    "turnout": [
+      "(17)",
+      "23",
+      "25"
+    ],
+    "signals": [
+      "D15-B"
+    ],
+    "conflicts": [],
+    "enemies": []
+  },
+  "D17-D7": {
+    "buttons": [
+      "D7A",
+      "D17A"
+    ],
+    "section": [
+      "17-23DG",
+      "25DG"
+    ],
+    "turnout": [
+      "(17)",
+      "(23)",
+      "25"
+    ],
+    "signals": [
+      "D17-B"
+    ],
+    "conflicts": [],
+    "enemies": []
+  },
+  "D11-D25": {
+    "buttons": [
+      "D11A",
+      "D25A"
+    ],
+    "section": [
+      "5/17WG",
+      "15-19DG",
+      "15/29WG",
+      "29DG"
+    ],
+    "turnout": [
+      "17",
+      "(13/15)",
+      "29"
+    ],
+    "signals": [
+      "D11-B"
+    ],
+    "conflicts": [],
+    "enemies": [
+      "D31-D19",
+      "D33-D19"
+    ]
+  },
+  "D25-D29": {
+    "buttons": [
+      "D25A",
+      "D29A"
+    ],
+    "section": [
+      "3-7DG",
+      "9-13DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "37DG",
+      "10G"
+    ],
+    "turnout": [
+      "(29)",
+      "31",
+      "35"
+    ],
+    "signals": [
+      "D25-B"
+    ],
+    "conflicts": [
+      "D25-3G"
+    ],
+    "enemies": [
+      "D31-D19",
+      "D33-D19"
+    ]
+  },
+  "D25-3G": {
+    "buttons": [
+      "D25A",
+      "SIIIDA"
+    ],
+    "section": [
+      "15/29WG",
+      "3G"
+    ],
+    "turnout": [
+      "29"
+    ],
+    "signals": [
+      "D25-B"
+    ],
+    "conflicts": [
+      "D25-D29"
+    ],
+    "enemies": [
+      "X1LQ-3G",
+      "X1LQ-IG",
+      "S3JG-3G",
+      "S3JG-IG",
+      "S1LQ-3G"
+    ]
+  },
+  "D31-D19": {
+    "buttons": [
+      "D19A",
+      "D31A"
+    ],
+    "section": [
+      "31DG",
+      "35DG"
+    ],
+    "turnout": [
+      "(35)",
+      "31",
+      "29",
+      "15"
+    ],
+    "signals": [
+      "D31-B"
+    ],
+    "conflicts": [],
+    "enemies": []
+  },
+  "D33-D19": {
+    "buttons": [
+      "D19A",
+      "D33A"
+    ],
+    "section": [
+      "31DG",
+      "35DG"
+    ],
+    "turnout": [
+      "(35)",
+      "31",
+      "29",
+      "15"
+    ],
+    "signals": [
+      "D33-B"
+    ],
+    "conflicts": [
+      "IIG-X3JG"
+    ],
+    "enemies": [
+      "X3JG-IIG"
+    ]
+  },
+  "D19-D7": {
+    "buttons": [
+      "D19A",
+      "D7A"
+    ],
+    "section": [
+      "15/29WG",
+      "15-17DG"
+    ],
+    "turnout": [
+      "13/15",
+      "17"
+    ],
+    "signals": [
+      "D19-B"
+    ],
+    "conflicts": [],
+    "enemies": []
+  },
+  "D1-D9": {
+    "buttons": [
+      "D1A",
+      "D9A"
+    ],
+    "section": [
+      "1DG",
+      "3-7DG",
+      "9-13DG"
+    ],
+    "turnout": [
+      "(1/3)",
+      "9/11",
+      "5/7"
+    ],
+    "signals": [
+      "D1-B"
+    ],
+    "conflicts": [
+      "D1-D5",
+      "D1-D21"
+    ],
+    "enemies": []
+  },
+  "D1-D21": {
+    "buttons": [
+      "D1A",
+      "D21A"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG"
+    ],
+    "turnout": [
+      "1/3",
+      "9/11",
+      "19/21"
+    ],
+    "signals": [
+      "D1-B"
+    ],
+    "conflicts": [],
+    "enemies": [
+      "D23-D21"
+    ]
+  },
+  "D9-D21": {
+    "buttons": [
+      "D9A",
+      "D21A"
+    ],
+    "section": [
+      "1DG",
+      "11DG",
+      "19DG",
+      "21DG",
+      "27-33DG",
+      "37DG",
+      "10G"
+    ],
+    "turnout": [
+      "5/7",
+      "(9/11)",
+      "19/21"
+    ],
+    "signals": [
+      "D9-B"
+    ],
+    "conflicts": [
+      "D9-D25",
+      "D9-IG"
+    ],
+    "enemies": [
+      "D23-D27"
+    ]
+  },
+  "D9-D25": {
+    "buttons": [
+      "D9A",
+      "D25A"
+    ],
+    "section": [
+      "9-13DG",
+      "15DG",
+      "15/29WG"
+    ],
+    "turnout": [
+      "9/11",
+      "(13/15)",
+      "29"
+    ],
+    "signals": [
+      "D9-B"
+    ],
+    "conflicts": [
+      "D9-D21",
+      "D9-IG"
+    ],
+    "enemies": [
+      "D9-D21",
+      "D9-IG"
+    ]
+  },
+  "D9-IG": {
+    "buttons": [
+      "D9A",
+      "SIDA"
+    ],
+    "section": [
+      "2DG",
+      "8DG",
+      "14DG",
+      "3G"
+    ],
+    "turnout": [
+      "9/13"
+    ],
+    "signals": [
+      "D9-B"
+    ],
+    "conflicts": [
+      "D9-D21",
+      "D9-D25"
+    ],
+    "enemies": [
+      "X1LQ-IG",
+      "X1LQ-3G",
+      "S3JG-IG",
+      "S3JG-3G",
+      "S1LQ-IG"
+    ]
+  },
+  "D21-D27": {
+    "buttons": [
+      "D21A",
+      "D27A"
+    ],
+    "section": [
+      "11DG",
+      "19DG",
+      "21DG",
+      "27DG"
+    ],
+    "turnout": [
+      "(19/21)",
+      "27"
+    ],
+    "signals": [
+      "D21-B"
+    ],
+    "conflicts": [
+      "D21-IIG"
+    ],
+    "enemies": []
+  },
+  "D21-IIG": {
+    "buttons": [
+      "D21A",
+      "SIIDA"
+    ],
+    "section": [
+      "11DG",
+      "2G"
+    ],
+    "turnout": [
+      "19/21"
+    ],
+    "signals": [
+      "D21-B"
+    ],
+    "conflicts": [
+      "D21-D27"
+    ],
+    "enemies": [
+      "X1LQ-IIG",
+      "X1LQ-4G",
+      "X1LQ-6G",
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-IIG",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S3JG-8G",
+      "S3JG-10G",
+      "S1LQ-IIG"
+    ]
+  },
+  "D23-D27": {
+    "buttons": [
+      "D23A",
+      "D27A"
+    ],
+    "section": [
+      "21DG",
+      "27DG"
+    ],
+    "turnout": [
+      "19/21"
+    ],
+    "signals": [
+      "D23-B"
+    ],
+    "conflicts": [
+      "D23-D21"
+    ],
+    "enemies": []
+  },
+  "D27-4G": {
+    "buttons": [
+      "D23A",
+      "D27A"
+    ],
+    "section": [
+      "21DG",
+      "27DG",
+      "4G"
+    ],
+    "turnout": [
+      "27"
+    ],
+    "signals": [
+      "D23-B"
+    ],
+    "conflicts": [
+      "D27-6G",
+      "D27-8G",
+      "D27-10G"
+    ],
+    "enemies": [
+      "X1LQ-4G",
+      "X1LQ-6G",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S1LQ-4G"
+    ]
+  },
+  "D27-6G": {
+    "buttons": [
+      "D27A",
+      "S6DA"
+    ],
+    "section": [
+      "21DG",
+      "27DG",
+      "33DG",
+      "6G"
+    ],
+    "turnout": [
+      "(27)",
+      "(33)"
+    ],
+    "signals": [
+      "D27-B"
+    ],
+    "conflicts": [
+      "D27-4G",
+      "D27-8G",
+      "D27-10G"
+    ],
+    "enemies": [
+      "X1LQ-4G",
+      "X1LQ-6G",
+      "S3JG-4G",
+      "S3JG-6G",
+      "S1LQ-6G"
+    ]
+  },
+  "D27-8G": {
+    "buttons": [
+      "D27A",
+      "S8DA"
+    ],
+    "section": [
+      "21DG",
+      "27DG",
+      "33DG",
+      "6G"
+    ],
+    "turnout": [
+      "(27)",
+      "33",
+      "(37)"
+    ],
+    "signals": [
+      "D27-B"
+    ],
+    "conflicts": [
+      "D27-4G",
+      "D27-6G",
+      "D27-10G"
+    ],
+    "enemies": [
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-8G",
+      "S3JG-10G",
+      "S1LQ-8G"
+    ]
+  },
+  "D27-10G": {
+    "buttons": [
+      "D27A",
+      "S10DA"
+    ],
+    "section": [
+      "21DG",
+      "27DG",
+      "33DG",
+      "37DG",
+      "10G"
+    ],
+    "turnout": [
+      "(27)",
+      "33",
+      "37"
+    ],
+    "signals": [
+      "D27-B"
+    ],
+    "conflicts": [
+      "D27-4G",
+      "D27-6G",
+      "D27-8G"
+    ],
+    "enemies": [
+      "X1LQ-8G",
+      "X1LQ-10G",
+      "S3JG-8G",
+      "S3JG-10G",
+      "S1LQ-10G"
+    ]
+  },
+  "D2-D6": {
+    "buttons": [
+      "D2A",
+      "D6A"
+    ],
+    "section": [
+      "2DG",
+      "4DG",
+      "6-10DG"
+    ],
+    "turnout": [
+      "(2/4)",
+      "6/8"
+    ],
+    "signals": [
+      "D2-B"
+    ],
+    "conflicts": [
+      "D2-D8"
+    ],
+    "enemies": [
+      "3G-X1LQ",
+      "IG-X1LQ",
+      "IIG-X1LQ",
+      "4G-X1LQ",
+      "6G-X1LQ",
+      "8G-X1LQ",
+      "10G-X1LQ",
+      "3G-S3JG",
+      "IG-S3JG",
+      "IIG-S3JG",
+      "4G-S3JG",
+      "6G-S3JG",
+      "8G-S3JG",
+      "10G-S3JG",
+      "3G-D4",
+      "IG-D4",
+      "IIG-D4",
+      "4G-D4",
+      "6G-D4",
+      "8G-D4",
+      "10G-D4"
+    ]
+  },
+  "D2-D8": {
+    "buttons": [
+      "D2A",
+      "D8A"
+    ],
+    "section": [
+      "2DG",
+      "8DG",
+      "14DG"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8"
+    ],
+    "signals": [
+      "D2-B"
+    ],
+    "conflicts": [
+      "D2-D6"
+    ],
+    "enemies": [
+      "3G-X1LQ",
+      "IG-X1LQ",
+      "IIG-X1LQ",
+      "4G-X1LQ",
+      "6G-X1LQ",
+      "8G-X1LQ",
+      "10G-X1LQ",
+      "3G-S3JG",
+      "IG-S3JG",
+      "IIG-S3JG",
+      "4G-S3JG",
+      "6G-S3JG",
+      "8G-S3JG",
+      "10G-S3JG",
+      "3G-D4",
+      "IG-D4",
+      "IIG-D4",
+      "4G-D4",
+      "6G-D4",
+      "8G-D4",
+      "10G-D4"
+    ]
+  },
+  "D6-D8": {
+    "buttons": [
+      "D6A",
+      "D8A"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "8DG",
+      "14DG"
+    ],
+    "turnout": [
+      "(6/8)",
+      "14"
+    ],
+    "signals": [
+      "D6-B"
+    ],
+    "conflicts": [
+      "D6-D10"
+    ],
+    "enemies": [
+      "3G-X1LQ",
+      "IG-X1LQ",
+      "IIG-X1LQ",
+      "4G-X1LQ",
+      "6G-X1LQ",
+      "8G-X1LQ",
+      "10G-X1LQ",
+      "3G-S3JG",
+      "IG-S3JG",
+      "IIG-S3JG",
+      "4G-S3JG",
+      "6G-S3JG",
+      "8G-S3JG",
+      "10G-S3JG",
+      "3G-D4",
+      "IG-D4",
+      "IIG-D4",
+      "4G-D4",
+      "6G-D4",
+      "8G-D4",
+      "10G-D4"
+    ]
+  },
+  "D6-D10": {
+    "buttons": [
+      "D6A",
+      "D10A"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "16DG"
+    ],
+    "turnout": [
+      "2/4",
+      "6/8",
+      "(10/12)",
+      "18"
+    ],
+    "signals": [
+      "D6-B"
+    ],
+    "conflicts": [
+      "D6-D8"
+    ],
+    "enemies": [
+      "3G-X1LQ",
+      "IG-X1LQ",
+      "IIG-X1LQ",
+      "4G-X1LQ",
+      "6G-X1LQ",
+      "8G-X1LQ",
+      "10G-X1LQ",
+      "3G-S3JG",
+      "IG-S3JG",
+      "IIG-S3JG",
+      "4G-S3JG",
+      "6G-S3JG",
+      "8G-S3JG",
+      "10G-S3JG",
+      "3G-D4",
+      "IG-D4",
+      "IIG-D4",
+      "4G-D4",
+      "6G-D4",
+      "8G-D4",
+      "10G-D4"
+    ]
+  },
+  "D6-IIG": {
+    "buttons": [
+      "D6A",
+      "XIIDA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "18DG",
+      "6G"
+    ],
+    "turnout": [
+      "6/8",
+      "10"
+    ],
+    "signals": [
+      "D6-B"
+    ],
+    "conflicts": [
+      "D6-D8",
+      "D6-4G",
+      "D6-6G"
+    ],
+    "enemies": [
+      "X3JG-IIG",
+      "X3JG-4G",
+      "X3JG-6G",
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-IIG",
+      "S1LQ-4G",
+      "S1LQ-6G",
+      "S1LQ-8G",
+      "S1LQ-10G"
+    ]
+  },
+  "D6-4G": {
+    "buttons": [
+      "D6A",
+      "X4DA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "16DG",
+      "8G"
+    ],
+    "turnout": [
+      "6/8",
+      "(10)",
+      "(12)",
+      "18"
+    ],
+    "signals": [
+      "D6-B"
+    ],
+    "conflicts": [
+      "D6-D8",
+      "D6-IIG",
+      "D6-6G"
+    ],
+    "enemies": [
+      "X3JG-4G",
+      "X3JG-6G",
+      "S1LQ-4G",
+      "S1LQ-6G",
+      "S1LQ-4G"
+    ]
+  },
+  "D6-6G": {
+    "buttons": [
+      "D6A",
+      "X6DA"
+    ],
+    "section": [
+      "4DG",
+      "6-10DG",
+      "12DG",
+      "16DG",
+      "10DG"
+    ],
+    "turnout": [
+      "6/8",
+      "(10)",
+      "(12)",
+      "(18)"
+    ],
+    "signals": [
+      "D6-B"
+    ],
+    "conflicts": [
+      "D6-D8",
+      "D6-IIG",
+      "D6-4G"
+    ],
+    "enemies": [
+      "X3JG-4G",
+      "X3JG-6G",
+      "S1LQ-4G",
+      "S1LQ-6G",
+      "S1LQ-6G"
+    ]
+  },
+  "D8-3G": {
+    "buttons": [
+      "D8A",
+      "X3DA"
+    ],
+    "section": [
+      "14DG"
+    ],
+    "turnout": [
+      "(14)"
+    ],
+    "signals": [
+      "D8-B"
+    ],
+    "conflicts": [
+      "D8-IG"
+    ],
+    "enemies": [
+      "X3JG-3G",
+      "X3JG-1G",
+      "S1LQ-3G",
+      "S1LQ-1G",
+      "S1LQ-3G"
+    ]
+  },
+  "D8-IG": {
+    "buttons": [
+      "D8A",
+      "XIDA"
+    ],
+    "section": [
+      "14DG"
+    ],
+    "turnout": [
+      "14"
+    ],
+    "signals": [
+      "D8-B"
+    ],
+    "conflicts": [
+      "D8-3G"
+    ],
+    "enemies": [
+      "X3JG-3G",
+      "X3JG-1G",
+      "S1LQ-3G",
+      "S1LQ-1G",
+      "S1LQ-IG"
+    ]
+  },
+  "D10-8G": {
+    "buttons": [
+      "D8A",
+      "X3DA"
+    ],
+    "section": [
+      "16DG"
+    ],
+    "turnout": [
+      "(16)"
+    ],
+    "signals": [
+      "D10-B"
+    ],
+    "conflicts": [
+      "D10-10G"
+    ],
+    "enemies": [
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-8G",
+      "S1LQ-10G",
+      "S1LQ-8G"
+    ]
+  },
+  "D10-10G": {
+    "buttons": [
+      "D8A",
+      "XIDA"
+    ],
+    "section": [
+      "16DG"
+    ],
+    "turnout": [
+      "16"
+    ],
+    "signals": [
+      "D10-B"
+    ],
+    "conflicts": [
+      "D10-10G"
+    ],
+    "enemies": [
+      "X3JG-8G",
+      "X3JG-10G",
+      "S1LQ-8G",
+      "S1LQ-10G",
+      "S1LQ-10G"
     ]
   }
 }

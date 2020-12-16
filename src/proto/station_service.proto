@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package prac.net;
+
+import "button_list_message.proto";
+import "path_message.proto";
+
+option go_package = ".;pb";
+option java_package = "dev.glycine.pracstation.pb";
+option java_multiple_files = true;
+
+message SearchPathRequest{
+  ButtonList buttons = 1;
+}
+
+message SearchPathResponse{
+  bool alive = 1;
+  Path path = 2;
+}
+
+service StationService {
+  rpc SearchPath(SearchPathRequest) returns (SearchPathResponse){};
+}

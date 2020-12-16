@@ -2,8 +2,8 @@
   "setting_option_msg": "set option",
   "unspecified_option_msg": "unspecified option",
   "illegal_option_msg": "illegal option",
-  "connect_msg": "network connect",
-  "load_msg": "server load",
+  "connect_msg": "network connecting...",
+  "load_route_msg": "loading route...",
   "cancel_event": "cancel",
   "found_event": "found",
   "route_event_msg": "route event",
@@ -15,5 +15,6 @@
   "living_route_exist_msg": "exist same route",
   "enemy_route_exist_msg": "exist enemy route",
   "obtain_route_failed_msg": "obtain route failed",
-  "no_such_route_msg": "no such route"
+  "no_such_route_msg": "no such route",
+  "section_not_free_msg" : "section is not free"
 }

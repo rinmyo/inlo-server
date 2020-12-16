@@ -2,23 +2,16 @@ package config
 
 import (
 	"github.com/pelletier/go-toml"
-	sys "github.com/shirou/gopsutil/host"
 	log "github.com/sirupsen/logrus"
-	"github.com/weekface/mgorus"
-	"time"
 )
 
 const (
-	defaultLevel     = log.InfoLevel
-	defaultLangCode  = "en-US"
-	defaultMongoHost = "localhost"
-	defaultMongoPort = "27017"
-	defaultLogDb     = "prac_log"
+	defaultLevel    = log.InfoLevel
+	defaultLangCode = "en-US"
 
 	configPath = "./resource/config.toml"
 	i18nPath   = "./resource/i18n/"
 
-	logFormat     = "log_20060102150405"
 	loadFailedMsg = "loading configuration failed!"
 )
 
@@ -29,6 +22,14 @@ var (
 
 func StationName() string {
 	return config.Get(stationName).(string)
+}
+
+func UserId() string {
+	return config.Get(userId).(string)
+}
+
+func UserPassword() string {
+	return config.Get(userPassword).(string)
 }
 
 func logLevel() log.Level {
@@ -72,34 +73,6 @@ func setLanguage(lang *Lang) {
 	Msg = lang
 }
 
-func mongoHook() (log.Hook, string, string, error) {
-	var host, port, db interface{}
-	if host = config.Get(mongoHost); host == nil {
-		host = defaultMongoHost
-	}
-
-	if port = config.Get(mongoPort); port == nil {
-		port = defaultMongoPort
-	}
-
-	if db = config.Get(mongoDatabase); db == nil {
-		db = defaultLogDb
-	}
-
-	url := host.(string) + ":" + port.(string)
-	col := time.Now().Format(logFormat)
-
-	if hooker, err := mgorus.NewHooker(url, db.(string), col); err != nil {
-		return nil, "", "", err
-	} else {
-		return hooker, url, db.(string), nil
-	}
-}
-
-func setMongoHook(hook log.Hook) {
-	log.AddHook(hook)
-}
-
 func setConfig(cfg *toml.Tree) {
 	config = cfg
 }
@@ -122,25 +95,8 @@ func loadConfig() {
 			log.WithField(serverLogLevel, lvl.String()).Info(Msg.SetOptMsg)
 		}
 
-		if hook, url, db, err := mongoHook(); err != nil {
-			log.WithField("Url", url).
-				WithField("Database", db).
-				Error(err)
-		} else {
-			setMongoHook(hook)
-			log.WithField("Url", url).
-				WithField("Database", db).
-				Info(Msg.ConnMsg)
-		}
-
-		log.WithField("Station", StationName()).Info(Msg.LoadMsg)
-		logEnvInfo()
+		log.WithField("Station", StationName()).Info(Msg.LoadRouteMsg)
 	}
-}
-
-func logEnvInfo() {
-	sysInfo, _ := sys.Info()
-	log.Debug(sysInfo.String())
 }
 
 func init() {

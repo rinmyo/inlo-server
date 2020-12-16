@@ -1,4 +1,4 @@
-package interlock
+package main
 
 import (
 	"encoding/json"
@@ -29,44 +29,84 @@ var (
 )
 
 type Route struct {
-	Id      string
-	Buttons []string
-	Section []string
-	Turnout []string
-	Signals []string
-	Enemies []string
+	Id        string
+	Buttons   []string
+	Section   []string
+	Turnout   []string
+	Signals   []string
+	Enemies   []string
+	Conflicts []string
 }
 
-func (r *Route) Found() bool {
-	//检测是否存在未取消的相同的进路
+func (r *Route) Found() (ok bool) {
+	ok = true
+	logFields := log.WithField(route, r.Id)
+
+	//存在未取消的相同的进路
 	if r.IsLiving() {
-		log.WithField(route, r.Id).
-			WithField(reason, msg.LivingRouteExistMsg).
-			Error(msg.FoundRouteFailMsg)
-		return false
+		logFields = logFields.WithField(reason, msg.LivingRouteExistMsg)
+		ok = false
 	}
 
-	//是否存在敌对进路
+	//存在敌对进路
 	if r.HasLivingEnemies() {
-		log.WithField(route, r.Id).
-			WithField(reason, msg.EnemyRouteExistMsg).
-			Error(msg.FoundRouteFailMsg)
-		return false
+		logFields = logFields.WithField(reason, msg.EnemyRouteExistMsg)
+		ok = false
 	}
 
-	////////////////////////////////
-	//todo:以下检测项目需要硬件接口，怎么办？
-	////////////////////////////////
-	//todo:轨道电路是否空闲
-	//todo:道岔是否在位且缩闭
-	//todo:信号机是否开放
-	////////////////////////////////
+	//存在牴觸進路
+	if r.HasLivingConflicts() {
+		logFields = logFields.WithField(reason, "route conflict")
+		ok = false
+	}
 
-	routePool[r.Id] = r
-	log.WithField(route, r.Id).
-		WithField(event, msg.FoundEvent).
-		Info(msg.RouteEventMsg)
-	return true
+	//軌道電路是否空閒
+	for _, section := range r.Section {
+		if ReadSectionState(section) != SectionFree {
+			logFields = logFields.WithField(reason, msg.SectionNotFreeMsg)
+			ok = false
+		}
+	}
+
+	channels := make(map[string]chan bool)
+
+	//調用硬件電路，開啓道岔至相應位置
+	for _, turnout := range r.Turnout {
+		if turnouts, err := ParseTurnout(turnout); err == nil {
+			for _, turnout := range turnouts {
+				channel := make(chan bool)
+				channels[turnout.Tid] = channel
+				go UpdateTurnoutState(turnout, channel)
+				//延遲三秒以模擬道岔動作的延遲
+				//time.Sleep(time.Second * 3)
+			}
+		}
+	}
+
+outer:
+	for {
+		for tid, channel := range channels {
+			if <-channel {
+				delete(channels, tid)
+			} else {
+				log.WithField("Turnout", tid).
+					Error("turnout cannot be set")
+			}
+		}
+		if len(channels) == 0 {
+			log.Info("All turnout are set")
+			break outer
+		}
+	}
+
+	if ok {
+		routePool[r.Id] = r
+		logFields = logFields.WithField(event, msg.FoundEvent)
+		logFields.Info(msg.RouteEventMsg)
+	} else {
+		logFields.Error(msg.FoundRouteFailMsg)
+	}
+	return
 }
 
 func (r *Route) Cancel() {
@@ -92,6 +132,19 @@ func (r *Route) LivingEnemies() (result []*Route) {
 
 func (r *Route) HasLivingEnemies() bool {
 	return len(r.LivingEnemies()) > 0
+}
+
+func (r *Route) LivingConflicts() (result []*Route) {
+	for _, v := range r.Conflicts {
+		if route, ok := routePool[v]; ok {
+			result = append(result, route)
+		}
+	}
+	return
+}
+
+func (r *Route) HasLivingConflicts() bool {
+	return len(r.LivingConflicts()) > 0
 }
 
 func GetRouteByName(name string) (*Route, bool) {
@@ -123,7 +176,7 @@ outer:
 }
 
 func loadRoute() {
-	log.WithField(content, interlock).Info(msg.LoadMsg)
+	log.WithField(content, interlock).Info(msg.LoadRouteMsg)
 	if jsonFile, err := os.Open(interlockPath); err != nil {
 		log.WithField(content, interlock).Fatal(msg.OpenFileFailMsg)
 	} else if byteValue, err := ioutil.ReadAll(jsonFile); err != nil {
@@ -135,7 +188,7 @@ func loadRoute() {
 	} else {
 		for k, v := range interlockTable {
 			v.Id = k
-			log.WithField(route, k).Info(msg.LoadMsg)
+			log.WithField(route, k).Info(msg.LoadRouteMsg)
 		}
 	}
 }

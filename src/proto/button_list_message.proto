@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package prac.net;
+
+option go_package = ".;pb";
+option java_package = "dev.glycine.pracstation.pb";
+option java_multiple_files = true;
+
+message ButtonList{
+  repeated string button_id = 1;
+}
