@@ -9,7 +9,7 @@ option go_package = ".;pb";
 option java_package = "dev.glycine.pracstation.pb";
 option java_multiple_files = true;
 
-message Path {
+message Route {
   string id = 1;
   repeated Section sections = 2;
   repeated Turnout turnouts = 3;

@@ -9,12 +9,14 @@ option java_multiple_files = true;
 message Signal{
   enum SignalState{
     UNKNOWN = 0;
-    OFF = 1;
-    STOP = 2;
-    CAUTION = 3;
-    PROCEED = 4;
-    ROUTE_STOP = 5;
-    ROUTE_PROCEED = 6;
+    BROKEN = 1;
+    BLACK = 2;
+    RED = 3;
+    YELLOW = 4;
+    DOUBLE_YELLOW = 5;
+    GREEN = 6;
+    BLUE = 7;
+    WHITE = 8;
   }
   string id = 1;
   SignalState state = 2;

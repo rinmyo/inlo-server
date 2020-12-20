@@ -4,20 +4,42 @@ package prac.net;
 
 import "button_list_message.proto";
 import "path_message.proto";
+import "signal_message.proto";
+import "section_message.proto";
+import "turnout_message.proto";
+import "google/protobuf/empty.proto";
 
 option go_package = ".;pb";
 option java_package = "dev.glycine.pracstation.pb";
 option java_multiple_files = true;
 
-message SearchPathRequest{
+message RefreshStationResponse{
+  oneof value {
+    Signal signal = 1;
+    Turnout turnout = 2;
+    Section section = 3;
+  }
+}
+
+message SearchRouteRequest{
   ButtonList buttons = 1;
 }
 
-message SearchPathResponse{
-  bool alive = 1;
-  Path path = 2;
+message SearchRouteResponse{
+  Route route = 1;
+}
+
+message NewRouteRequest{
+  string route_id = 1;
+}
+
+message CancelRouteRequest{
+  string route_id = 1;
 }
 
 service StationService {
-  rpc SearchPath(SearchPathRequest) returns (SearchPathResponse){};
+  rpc RefreshStation(google.protobuf.Empty) returns (stream RefreshStationResponse){};
+  rpc SearchRoute(SearchRouteRequest) returns (SearchRouteResponse){};
+  rpc CreateRoute(NewRouteRequest) returns (google.protobuf.Empty){};
+  rpc CancelRoute(CancelRouteRequest) returns (google.protobuf.Empty){};
 }

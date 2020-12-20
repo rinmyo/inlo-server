@@ -36,6 +36,7 @@ func accessibleRoles() map[string][]string {
 
 func runGRPCServer(
 	authServer pb.AuthServiceServer,
+	stationServer pb.StationServiceServer,
 	jwtManager *service.JWTManager,
 	listener net.Listener,
 ) error {
@@ -48,6 +49,7 @@ func runGRPCServer(
 	grpcServer := grpc.NewServer(serverOptions...)
 
 	pb.RegisterAuthServiceServer(grpcServer, authServer)
+	pb.RegisterStationServiceServer(grpcServer, stationServer)
 	reflection.Register(grpcServer)
 
 	log.Printf("Start GRPC server at %s", listener.Addr().String())
@@ -80,13 +82,28 @@ func main() {
 	jwtManager := service.NewJWTManager(secretKey, tokenDuration)
 	authServer := service.NewAuthServer(userCollection, jwtManager)
 
+	simulatedController := service.NewSimulatedController()
+	var stationController service.StationController = simulatedController
+	stationManager := service.NewStationManager(&stationController, "./resource/interlock.json")
+	stationServer := service.NewStationServer(stationManager)
+	stationManager.RefreshStationStatus()
+
+	go func() {
+		for {
+			time.Sleep(1 * time.Second)
+			simulatedController.UpdateTurnoutStatus("3", pb.Turnout_REVERSED)
+			time.Sleep(1 * time.Second)
+			simulatedController.UpdateTurnoutStatus("3", pb.Turnout_NORMAL)
+		}
+	}()
+
 	address := fmt.Sprintf("0.0.0.0:%d", *port)
 	listener, err := net.Listen("tcp", address)
 	if err != nil {
 		log.Fatal("cannot start server: ", err)
 	}
 
-	err = runGRPCServer(authServer, jwtManager, listener) //here program blocking
+	err = runGRPCServer(authServer, stationServer, jwtManager, listener) //here program blocking
 	if err != nil {
 		log.Fatal("cannot start server: ", err)
 	}
