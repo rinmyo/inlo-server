@@ -19,85 +19,75 @@ func NewStationServer(statusManager *StationManager) *StationServer {
 	return &StationServer{statusManager}
 }
 
-func (s *StationServer) RefreshStation(_ *emptypb.Empty, stream pb.StationService_RefreshStationServer) error {
-	s.sm.OnStatusChange(
-		func(e StatusChangedEvent) error {
-			response := &pb.RefreshStationResponse{}
-			switch e.st {
-			case SectionType:
-				response.Value = &pb.RefreshStationResponse_Section{
-					Section: &pb.Section{Id: e.id, State: pb.Section_SectionState(e.new)},
-				}
-			case TurnoutType:
-				response.Value = &pb.RefreshStationResponse_Turnout{
-					Turnout: &pb.Turnout{Id: e.id, State: pb.Turnout_TurnoutState(e.new)},
-				}
-			case SignalType:
-				response.Value = &pb.RefreshStationResponse_Signal{
-					Signal: &pb.Signal{Id: e.id, State: pb.Signal_SignalState(e.new)},
-				}
-			}
-			err := stream.Send(response)
-			if err != nil {
-				return err
-			}
-			log.Info("sent a station")
-			return nil
+func (s *StationServer) InitStation(context.Context, *emptypb.Empty) (*pb.InitStationResponse, error) {
+	var signals []*pb.Signal
+	for id, state := range s.sm.signals {
+		signals = append(signals, &pb.Signal{
+			Id:    id,
+			State: state,
 		})
+	}
+
+	var turnouts []*pb.Turnout
+	for id, state := range s.sm.turnouts {
+		turnouts = append(turnouts, &pb.Turnout{
+			Id:    id,
+			State: state,
+		})
+	}
+
+	var sections []*pb.Section
+	for id, state := range s.sm.sections {
+		sections = append(sections, &pb.Section{
+			Id:    id,
+			State: state,
+		})
+	}
+	response := &pb.InitStationResponse{
+		Signal:  signals,
+		Turnout: turnouts,
+		Section: sections,
+	}
+	return response, nil
+}
+
+func (s *StationServer) RefreshStation(_ *emptypb.Empty, stream pb.StationService_RefreshStationServer) error {
+	for e := range s.sm.channel {
+		response := &pb.RefreshStationResponse{}
+		switch e.st {
+		case SectionType:
+			response.Value = &pb.RefreshStationResponse_Section{
+				Section: &pb.Section{Id: e.id, State: pb.Section_SectionState(e.new)},
+			}
+		case TurnoutType:
+			response.Value = &pb.RefreshStationResponse_Turnout{
+				Turnout: &pb.Turnout{Id: e.id, State: pb.Turnout_TurnoutState(e.new)},
+			}
+		case SignalType:
+			response.Value = &pb.RefreshStationResponse_Signal{
+				Signal: &pb.Signal{Id: e.id, State: pb.Signal_SignalState(e.new)},
+			}
+		}
+		err := stream.Send(response)
+		if err != nil {
+			log.Info("error occurred: ", err)
+			return err
+		}
+		log.Info("sent a station: ", response)
+	}
 	return nil
 }
 
-func (s *StationServer) SearchRoute(_ context.Context, req *pb.SearchRouteRequest) (*pb.SearchRouteResponse, error) {
+func (s *StationServer) CreateRoute(_ context.Context, req *pb.CreateRouteRequest) (*emptypb.Empty, error) {
 	btns := req.GetButtons().GetButtonId()
 	if route, ok := s.sm.GetRouteByBtn(btns...); ok {
-		var (
-			turnouts []*pb.Turnout
-			signals  []*pb.Signal
-			sections []*pb.Section
-		)
-		for _, v := range route.Turnouts {
-			t, err := ParseTurnout(v)
-			if err != nil {
-				return nil, err
-			}
-			log.Debug("search turnout: ", v, "->", t)
-			turnouts = append(turnouts, t...)
-		}
-		for _, v := range route.Signals {
-			s := ParseSignal(v)
-			signals = append(signals, s)
-			log.Debug("search signal: ", v, "->", s)
-		}
-		for _, v := range route.Sections {
-			s := ParseOccupiedSection(v)
-			sections = append(sections, s)
-			log.Debug("search section: ", v, "->", s)
-		}
-
-		return &pb.SearchRouteResponse{
-			Route: &pb.Route{
-				Id:       route.Id,
-				Sections: sections,
-				Turnouts: turnouts,
-				Signals:  signals,
-			},
-		}, nil
-	}
-	return nil, status.Error(codes.NotFound, "not found the path")
-}
-
-func (s *StationServer) CreateRoute(_ context.Context, req *pb.NewRouteRequest) (*emptypb.Empty, error) {
-	rid := req.GetRouteId()
-	route, ok := s.sm.GetRouteByName(rid)
-	if ok {
 		err := s.sm.CreateRoute(route)
 		if err != nil {
 			return nil, err
 		}
-		log.Info("create route command: " + rid)
 		return &emptypb.Empty{}, nil
 	}
-	return nil, status.Errorf(codes.NotFound, "no such route: %s", rid)
+	return nil, status.Error(codes.NotFound, "not found the route")
 }
 
 func (s *StationServer) CancelRoute(_ context.Context, req *pb.CancelRouteRequest) (*emptypb.Empty, error) {

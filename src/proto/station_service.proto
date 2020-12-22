@@ -3,7 +3,6 @@ syntax = "proto3";
 package prac.net;
 
 import "button_list_message.proto";
-import "path_message.proto";
 import "signal_message.proto";
 import "section_message.proto";
 import "turnout_message.proto";
@@ -21,16 +20,14 @@ message RefreshStationResponse{
   }
 }
 
-message SearchRouteRequest{
+message InitStationResponse{
+  repeated Signal signal = 1;
+  repeated Turnout turnout = 2;
+  repeated Section section = 3;
+}
+
+message CreateRouteRequest{
   ButtonList buttons = 1;
-}
-
-message SearchRouteResponse{
-  Route route = 1;
-}
-
-message NewRouteRequest{
-  string route_id = 1;
 }
 
 message CancelRouteRequest{
@@ -38,8 +35,8 @@ message CancelRouteRequest{
 }
 
 service StationService {
+  rpc InitStation(google.protobuf.Empty) returns (InitStationResponse){};
   rpc RefreshStation(google.protobuf.Empty) returns (stream RefreshStationResponse){};
-  rpc SearchRoute(SearchRouteRequest) returns (SearchRouteResponse){};
-  rpc CreateRoute(NewRouteRequest) returns (google.protobuf.Empty){};
+  rpc CreateRoute(CreateRouteRequest) returns (google.protobuf.Empty){};
   rpc CancelRoute(CancelRouteRequest) returns (google.protobuf.Empty){};
 }

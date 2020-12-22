@@ -12,6 +12,7 @@ message Section{
     BROKEN = 1;
     OCCUPIED = 2;
     FREE = 3;
+    LOCKED = 4;
   }
   string id = 1;
   SectionState state = 2;

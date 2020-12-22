@@ -15,9 +15,9 @@ type StationController interface {
 	GetSectionStatus(id string) pb.Section_SectionState
 	GetSignalStatus(id string) pb.Signal_SignalState
 	GetTurnoutStatus(id string) pb.Turnout_TurnoutState
-	UpdateSectionStatus(id string, new pb.Section_SectionState)
-	UpdateSignalStatus(id string, new pb.Signal_SignalState)
-	UpdateTurnoutStatus(id string, new pb.Turnout_TurnoutState)
+	UpdateSectionStatus(section *pb.Section)
+	UpdateSignalStatus(signal *pb.Signal)
+	UpdateTurnoutStatus(turnout *pb.Turnout)
 }
 
 type SimulatedController struct {
@@ -127,20 +127,20 @@ func (d SimulatedController) GetTurnoutStatus(id string) pb.Turnout_TurnoutState
 	return result
 }
 
-func (d SimulatedController) UpdateSectionStatus(id string, new pb.Section_SectionState) {
+func (d SimulatedController) UpdateSectionStatus(section *pb.Section) {
 	d.mutex["sections"].Lock()
 	defer d.mutex["sections"].Unlock()
-	d.sections[id] = new
+	d.sections[section.Id] = section.State
 }
 
-func (d SimulatedController) UpdateSignalStatus(id string, new pb.Signal_SignalState) {
+func (d SimulatedController) UpdateSignalStatus(signal *pb.Signal) {
 	d.mutex["signals"].Lock()
 	defer d.mutex["signals"].Unlock()
-	d.signals[id] = new
+	d.signals[signal.Id] = signal.State
 }
 
-func (d SimulatedController) UpdateTurnoutStatus(id string, new pb.Turnout_TurnoutState) {
+func (d SimulatedController) UpdateTurnoutStatus(turnout *pb.Turnout) {
 	d.mutex["turnouts"].Lock()
 	defer d.mutex["turnouts"].Unlock()
-	d.turnouts[id] = new
+	d.turnouts[turnout.Id] = turnout.State
 }

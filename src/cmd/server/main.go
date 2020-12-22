@@ -86,14 +86,10 @@ func main() {
 	var stationController service.StationController = simulatedController
 	stationManager := service.NewStationManager(&stationController, "./resource/interlock.json")
 	stationServer := service.NewStationServer(stationManager)
-	stationManager.RefreshStationStatus()
 
 	go func() {
 		for {
-			time.Sleep(1 * time.Second)
-			simulatedController.UpdateTurnoutStatus("3", pb.Turnout_REVERSED)
-			time.Sleep(1 * time.Second)
-			simulatedController.UpdateTurnoutStatus("3", pb.Turnout_NORMAL)
+			stationManager.RefreshStationStatus()
 		}
 	}()
 

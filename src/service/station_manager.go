@@ -35,7 +35,7 @@ type StationManager struct {
 	signals    map[string]pb.Signal_SignalState
 	interlock  map[string]*Route
 	routePool  map[string]*Route
-	channel    chan StatusChangedEvent
+	channel    chan *StatusChangedEvent
 	controller *StationController
 }
 
@@ -45,51 +45,10 @@ func NewStationManager(sp *StationController, interlockPath string) *StationMana
 	signals := make(map[string]pb.Signal_SignalState)
 	routePool := make(map[string]*Route)
 	interlock := make(map[string]*Route)
+	ioInfo := (*sp).GetIOInfo()
+	channel := make(chan *StatusChangedEvent, len(ioInfo["turnouts"])+len(ioInfo["sections"])+len(ioInfo["signals"]))
 	loadRoute(interlock, interlockPath)
-	channel := make(chan StatusChangedEvent)
 	return &StationManager{sections, turnouts, signals, interlock, routePool, channel, sp}
-}
-
-//OnStatusChange 當車站狀態變化時
-func (m *StationManager) OnStatusChange(handle func(StatusChangedEvent) error) {
-	for {
-		e := <-m.channel
-		err := handle(e)
-		if err != nil {
-			log.Error(err)
-			return
-		}
-	}
-}
-
-func (m *StationManager) UpdateTurnoutStatus(id string, new pb.Turnout_TurnoutState) {
-	old := m.turnouts[id]
-	m.turnouts[id] = new
-	e := *NewStatusChangedEvent(TurnoutType, id, Status(old), Status(new))
-	select {
-	case m.channel <- e:
-	default:
-	}
-}
-
-func (m *StationManager) UpdateSectionStatus(id string, new pb.Section_SectionState) {
-	old := m.sections[id]
-	m.sections[id] = new
-	e := *NewStatusChangedEvent(SectionType, id, Status(old), Status(new))
-	select {
-	case m.channel <- e:
-	default:
-	}
-}
-
-func (m *StationManager) UpdateSignalStatus(id string, new pb.Signal_SignalState) {
-	old := m.signals[id]
-	m.signals[id] = new
-	e := *NewStatusChangedEvent(SignalType, id, Status(old), Status(new))
-	select {
-	case m.channel <- e:
-	default:
-	}
 }
 
 // CreateRoute create a new route
@@ -98,8 +57,11 @@ func (m *StationManager) CreateRoute(r *Route) error {
 
 	//存在未取消的相同的进路
 	if m.IsLiving(r) {
+		log.Error("exist living route: ", r.Id)
 		errMsg["exist living route"] = r.Id
 	}
+
+	log.Debug(m.routePool)
 
 	//存在敌对进路
 	result := m.LivingEnemies(r)
@@ -140,6 +102,32 @@ func (m *StationManager) CreateRoute(r *Route) error {
 		}
 		return status.Error(codes.Internal, string(str[:]))
 	}
+
+	// 没有错误
+	c := *m.controller
+	for _, v := range r.Turnouts {
+		t, err := ParseTurnout(v)
+		if err != nil {
+			return err
+		}
+		log.Debug("set turnout: ", v, "->", t)
+		for _, w := range t {
+			c.UpdateTurnoutStatus(w)
+		}
+	}
+
+	for _, v := range r.Sections {
+		s := ParseLockedSection(v)
+		c.UpdateSectionStatus(s)
+		log.Debug("set section: ", v, "->", s)
+	}
+	for _, v := range r.Signals {
+		s := ParseSignal(v)
+		c.UpdateSignalStatus(s)
+		log.Debug("set signal: ", v, "->", s)
+	}
+	m.routePool[r.Id] = r
+	log.Info("route has been created: ", r.Id)
 	return nil
 }
 
@@ -179,41 +167,57 @@ func (m *StationManager) LivingConflicts(r *Route) (result []*Route) {
 }
 
 func (m *StationManager) RefreshStationStatus() {
-	go func() {
-		c := *m.controller
-		for {
-			for _, id := range c.GetIOInfo()["turnouts"] {
-				newState := c.GetTurnoutStatus(id)
-				if oldState, ok := m.turnouts[id]; ok {
-					if oldState != newState {
-						m.UpdateTurnoutStatus(id, newState)
-					}
-				} else {
-					m.turnouts[id] = newState
+	c := *m.controller
+	for _, id := range c.GetIOInfo()["turnouts"] {
+		newState := c.GetTurnoutStatus(id)
+		if oldState, ok := m.turnouts[id]; ok {
+			if oldState != newState {
+				m.turnouts[id] = newState
+				e := NewStatusChangedEvent(TurnoutType, id, Status(oldState), Status(newState))
+				select {
+				case m.channel <- e:
+				default:
+					log.Info("丢掉啦: ", e)
 				}
 			}
-			for _, id := range c.GetIOInfo()["sections"] {
-				newState := c.GetSectionStatus(id)
-				if oldState, ok := m.sections[id]; ok {
-					if oldState != newState {
-						m.UpdateSectionStatus(id, newState)
-					}
-				} else {
-					m.sections[id] = newState
-				}
-			}
-			for _, id := range c.GetIOInfo()["signals"] {
-				newState := c.GetSignalStatus(id)
-				if oldState, ok := m.signals[id]; ok {
-					if oldState != newState {
-						m.UpdateSignalStatus(id, newState)
-					}
-				} else {
-					m.signals[id] = newState
-				}
-			}
+		} else {
+			m.turnouts[id] = newState
 		}
-	}()
+	}
+
+	for _, id := range c.GetIOInfo()["sections"] {
+		newState := c.GetSectionStatus(id)
+		if oldState, ok := m.sections[id]; ok {
+			if oldState != newState {
+				m.sections[id] = newState
+				e := NewStatusChangedEvent(SectionType, id, Status(oldState), Status(newState))
+				select {
+				case m.channel <- e:
+				default:
+					log.Info("丢掉啦: ", e)
+				}
+			}
+		} else {
+			m.sections[id] = newState
+		}
+	}
+
+	for _, id := range c.GetIOInfo()["signals"] {
+		newState := c.GetSignalStatus(id)
+		if oldState, ok := m.signals[id]; ok {
+			if oldState != newState {
+				m.signals[id] = newState
+				e := NewStatusChangedEvent(SignalType, id, Status(oldState), Status(newState))
+				select {
+				case m.channel <- e:
+				default:
+					log.Info("丢掉啦: ", e)
+				}
+			}
+		} else {
+			m.signals[id] = newState
+		}
+	}
 }
 
 func (m *StationManager) GetRouteByName(name string) (*Route, bool) {

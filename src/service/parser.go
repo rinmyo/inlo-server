@@ -19,7 +19,7 @@ func ParseTurnout(str string) ([]*pb.Turnout, error) {
 	//(ss)
 	if matched, _ := regexp.MatchString("^\\([0-9]*\\)$", str); matched {
 		return []*pb.Turnout{{
-			Id:    str,
+			Id:    str[1 : len(str)-1],
 			State: pb.Turnout_REVERSED,
 		}}, nil
 	}
@@ -57,10 +57,10 @@ func ParseTurnout(str string) ([]*pb.Turnout, error) {
 	return nil, errors.New("cannot match any pattern")
 }
 
-func ParseOccupiedSection(str string) *pb.Section {
+func ParseLockedSection(str string) *pb.Section {
 	return &pb.Section{
 		Id:    str,
-		State: pb.Section_OCCUPIED,
+		State: pb.Section_LOCKED,
 	}
 }
 
