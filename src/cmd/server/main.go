@@ -24,13 +24,16 @@ func createUser(userCollection service.UserCollection, username, password, role 
 
 const (
 	secretKey     = "secret"
-	tokenDuration = 100 * time.Second
+	tokenDuration = 24 * time.Hour
 )
 
 func accessibleRoles() map[string][]string {
 	return map[string][]string{
 		"adminEvent": {"admin"},
-		"userEvent":  {"admin", "user"},
+		"/prac.net.StationService/RefreshStation": {"admin", "user"},
+		"/prac.net.StationService/InitStation":    {"admin", "user"},
+		"/prac.net.StationService/CreateRoute":    {"admin", "user"},
+		"/prac.net.StationService/CancelRoute":    {"admin", "user"},
 	}
 }
 
@@ -41,6 +44,7 @@ func runGRPCServer(
 	listener net.Listener,
 ) error {
 	interceptor := service.NewAuthInterceptor(jwtManager, accessibleRoles())
+
 	serverOptions := []grpc.ServerOption{
 		grpc.UnaryInterceptor(interceptor.Unary()),
 		grpc.StreamInterceptor(interceptor.Stream()),

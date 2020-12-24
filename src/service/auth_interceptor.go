@@ -64,7 +64,7 @@ func (interceptor *AuthInterceptor) authorize(ctx context.Context, method string
 	accessibleRoles, ok := interceptor.accessibleRoles[method]
 	if !ok {
 		// everyone can access
-		log.Debug("OK")
+		log.Debug(method)
 		return nil
 	}
 
@@ -73,7 +73,7 @@ func (interceptor *AuthInterceptor) authorize(ctx context.Context, method string
 		return status.Errorf(codes.Unauthenticated, "metadata is not provided")
 	}
 
-	values := md["Authorization"]
+	values := md["authorization"]
 	if len(values) == 0 {
 		return status.Errorf(codes.Unauthenticated, "authorization token is not provided")
 	}

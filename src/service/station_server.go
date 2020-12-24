@@ -14,6 +14,14 @@ type StationServer struct {
 	sm *StationManager
 }
 
+func (s *StationServer) ManualUnlockRoute(ctx context.Context, request *pb.ManualUnlockRouteRequest) (*emptypb.Empty, error) {
+	panic("implement me")
+}
+
+func (s *StationServer) ErrorUnlockRoute(ctx context.Context, request *pb.ErrorUnlockRouteRequest) (*emptypb.Empty, error) {
+	panic("implement me")
+}
+
 // NewStationServer returns a new StationServer object
 func NewStationServer(statusManager *StationManager) *StationServer {
 	return &StationServer{statusManager}
@@ -43,11 +51,20 @@ func (s *StationServer) InitStation(context.Context, *emptypb.Empty) (*pb.InitSt
 			State: state,
 		})
 	}
+
+	var routes []string
+	for _, r := range s.sm.AliveRoutes() {
+		routes = append(routes, r.Id)
+	}
 	response := &pb.InitStationResponse{
 		Signal:  signals,
 		Turnout: turnouts,
 		Section: sections,
+		RouteId: routes,
 	}
+	close(s.sm.channel)
+	ioInfo := (*s.sm.controller).GetIOInfo()
+	s.sm.channel = make(chan *StateChangedEvent, len(ioInfo["turnouts"])+len(ioInfo["sections"])+len(ioInfo["signals"]))
 	return response, nil
 }
 
@@ -70,22 +87,23 @@ func (s *StationServer) RefreshStation(_ *emptypb.Empty, stream pb.StationServic
 		}
 		err := stream.Send(response)
 		if err != nil {
-			log.Info("error occurred: ", err)
+			log.Error(err)
 			return err
 		}
 		log.Info("sent a station: ", response)
 	}
+	log.Info("一次會話結束")
 	return nil
 }
 
-func (s *StationServer) CreateRoute(_ context.Context, req *pb.CreateRouteRequest) (*emptypb.Empty, error) {
+func (s *StationServer) CreateRoute(_ context.Context, req *pb.CreateRouteRequest) (*pb.CreateRouteResponse, error) {
 	btns := req.GetButtons().GetButtonId()
 	if route, ok := s.sm.GetRouteByBtn(btns...); ok {
 		err := s.sm.CreateRoute(route)
 		if err != nil {
 			return nil, err
 		}
-		return &emptypb.Empty{}, nil
+		return &pb.CreateRouteResponse{RouteId: route.Id}, nil
 	}
 	return nil, status.Error(codes.NotFound, "not found the route")
 }

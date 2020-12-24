@@ -24,19 +24,36 @@ message InitStationResponse{
   repeated Signal signal = 1;
   repeated Turnout turnout = 2;
   repeated Section section = 3;
+  repeated string route_id = 4;
 }
 
 message CreateRouteRequest{
   ButtonList buttons = 1;
 }
 
+message CreateRouteResponse{
+  string route_id = 1;
+}
+
 message CancelRouteRequest{
   string route_id = 1;
 }
 
+
+message ManualUnlockRouteRequest{
+  string route_id = 1;
+}
+
+message ErrorUnlockRouteRequest{
+  string route_id = 1;
+}
+
+
 service StationService {
   rpc InitStation(google.protobuf.Empty) returns (InitStationResponse){};
   rpc RefreshStation(google.protobuf.Empty) returns (stream RefreshStationResponse){};
-  rpc CreateRoute(CreateRouteRequest) returns (google.protobuf.Empty){};
+  rpc CreateRoute(CreateRouteRequest) returns (CreateRouteResponse){};
   rpc CancelRoute(CancelRouteRequest) returns (google.protobuf.Empty){};
+  rpc ManualUnlockRoute(ManualUnlockRouteRequest) returns (google.protobuf.Empty){};
+  rpc ErrorUnlockRoute(ErrorUnlockRouteRequest) returns (google.protobuf.Empty){};
 }

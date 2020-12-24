@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"pracserver/src/pb"
 	"sync"
+	"time"
 )
 
 const ioPath = "./resource/Io.json"
@@ -134,13 +135,19 @@ func (d SimulatedController) UpdateSectionStatus(section *pb.Section) {
 }
 
 func (d SimulatedController) UpdateSignalStatus(signal *pb.Signal) {
+	log.Debug("開始設定號誌機")
+	time.Sleep(2 * time.Second)
 	d.mutex["signals"].Lock()
 	defer d.mutex["signals"].Unlock()
 	d.signals[signal.Id] = signal.State
+	log.Debug("號誌機已設定: ", signal.State)
 }
 
 func (d SimulatedController) UpdateTurnoutStatus(turnout *pb.Turnout) {
+	log.Debug("開始動作道岔")
+	time.Sleep(3 * time.Second)
 	d.mutex["turnouts"].Lock()
 	defer d.mutex["turnouts"].Unlock()
 	d.turnouts[turnout.Id] = turnout.State
+	log.Debug("道岔動作結束: ", turnout.State)
 }
