@@ -52,23 +52,29 @@ func (s *StationServer) InitStation(context.Context, *emptypb.Empty) (*pb.InitSt
 		})
 	}
 
-	var routes []string
+	var routes []*pb.InitRouteMessage
 	for _, r := range s.sm.AliveRoutes() {
-		routes = append(routes, r.Id)
+		routes = append(routes,
+			&pb.InitRouteMessage{
+				RouteId:  r.Id,
+				ButtonId: r.Buttons[0],
+			})
 	}
+
 	response := &pb.InitStationResponse{
 		Signal:  signals,
 		Turnout: turnouts,
 		Section: sections,
-		RouteId: routes,
+		Route:   routes,
 	}
-	close(s.sm.channel)
-	ioInfo := (*s.sm.controller).GetIOInfo()
-	s.sm.channel = make(chan *StateChangedEvent, len(ioInfo["turnouts"])+len(ioInfo["sections"])+len(ioInfo["signals"]))
 	return response, nil
 }
 
 func (s *StationServer) RefreshStation(_ *emptypb.Empty, stream pb.StationService_RefreshStationServer) error {
+	close(s.sm.channel) //關閉舊信道
+	ioInfo := (*s.sm.controller).GetIOInfo()
+	s.sm.channel = make(chan *StateChangedEvent, len(ioInfo["turnouts"])+len(ioInfo["sections"])+len(ioInfo["signals"]))
+
 	for e := range s.sm.channel {
 		response := &pb.RefreshStationResponse{}
 		switch e.st {
@@ -103,7 +109,9 @@ func (s *StationServer) CreateRoute(_ context.Context, req *pb.CreateRouteReques
 		if err != nil {
 			return nil, err
 		}
-		return &pb.CreateRouteResponse{RouteId: route.Id}, nil
+		return &pb.CreateRouteResponse{
+			RouteId: route.Id,
+		}, nil
 	}
 	return nil, status.Error(codes.NotFound, "not found the route")
 }

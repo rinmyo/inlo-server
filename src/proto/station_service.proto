@@ -6,6 +6,7 @@ import "button_list_message.proto";
 import "signal_message.proto";
 import "section_message.proto";
 import "turnout_message.proto";
+import "init_route_message.proto";
 import "google/protobuf/empty.proto";
 
 option go_package = ".;pb";
@@ -24,7 +25,7 @@ message InitStationResponse{
   repeated Signal signal = 1;
   repeated Turnout turnout = 2;
   repeated Section section = 3;
-  repeated string route_id = 4;
+  repeated InitRouteMessage route = 4;
 }
 
 message CreateRouteRequest{
@@ -39,7 +40,6 @@ message CancelRouteRequest{
   string route_id = 1;
 }
 
-
 message ManualUnlockRouteRequest{
   string route_id = 1;
 }
@@ -47,7 +47,6 @@ message ManualUnlockRouteRequest{
 message ErrorUnlockRouteRequest{
   string route_id = 1;
 }
-
 
 service StationService {
   rpc InitStation(google.protobuf.Empty) returns (InitStationResponse){};
