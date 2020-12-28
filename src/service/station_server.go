@@ -104,6 +104,7 @@ func (s *StationServer) RefreshStation(_ *emptypb.Empty, stream pb.StationServic
 
 func (s *StationServer) CreateRoute(_ context.Context, req *pb.CreateRouteRequest) (*pb.CreateRouteResponse, error) {
 	btns := req.GetButtons().GetButtonId()
+	log.Debug("get buttons: ", btns)
 	if route, ok := s.sm.GetRouteByBtn(btns...); ok {
 		err := s.sm.CreateRoute(route)
 		if err != nil {
@@ -120,7 +121,10 @@ func (s *StationServer) CancelRoute(_ context.Context, req *pb.CancelRouteReques
 	rid := req.GetRouteId()
 	route, ok := s.sm.GetRouteByName(rid)
 	if ok {
-		s.sm.CancelRoute(route)
+		err := s.sm.CancelRoute(route)
+		if err != nil {
+			return nil, status.Errorf(codes.Internal, err.Error())
+		}
 		log.Info("create route command: " + rid)
 		return &emptypb.Empty{}, nil
 	}
