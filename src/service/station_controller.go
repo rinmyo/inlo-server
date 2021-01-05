@@ -9,8 +9,6 @@ import (
 	"time"
 )
 
-const ioPath = "./resource/io.json"
-
 type StationController interface {
 	GetIOInfo() map[string][]string
 	GetSectionStatus(id string) pb.Section_SectionState
@@ -59,7 +57,7 @@ func turnoutStateFromString(s string) pb.Turnout_TurnoutState {
 	return pb.Turnout_UNKNOWN
 }
 
-func NewSimulatedController() *SimulatedController {
+func NewSimulatedController(ioPath string) *SimulatedController {
 	var io map[string]map[string]string
 	bytes, err := ioutil.ReadFile(ioPath)
 	if err != nil {

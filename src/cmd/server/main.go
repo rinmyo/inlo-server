@@ -64,6 +64,8 @@ const logFormat = "log_20060102150405"
 
 func main() {
 	port := flag.Int("port", 8080, "the server port")
+	interlockPath := flag.String("interlock", "./resource/interlock.json", "the interlock file path")
+	ioPath := flag.String("io", "./resource/io.json", "the io file path")
 	flag.Parse()
 
 	client, disconnectMongoDB, err := service.NewMongoClient("localhost")
@@ -86,9 +88,9 @@ func main() {
 	jwtManager := service.NewJWTManager(secretKey, tokenDuration)
 	authServer := service.NewAuthServer(userCollection, jwtManager)
 
-	simulatedController := service.NewSimulatedController()
+	simulatedController := service.NewSimulatedController(*ioPath)
 	var stationController service.StationController = simulatedController
-	stationManager := service.NewStationManager(&stationController, "./resource/interlock.json")
+	stationManager := service.NewStationManager(&stationController, *interlockPath)
 	stationServer := service.NewStationServer(stationManager)
 
 	go func() {
