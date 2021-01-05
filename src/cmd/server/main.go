@@ -66,9 +66,10 @@ func main() {
 	port := flag.Int("port", 8080, "the server port")
 	interlockPath := flag.String("interlock", "./resource/interlock.json", "the interlock file path")
 	ioPath := flag.String("io", "./resource/io.json", "the io file path")
+	mongoURL := flag.String("mongo", "0.0.0.0:27017", "mongodb url")
 	flag.Parse()
 
-	client, disconnectMongoDB, err := service.NewMongoClient("localhost")
+	client, disconnectMongoDB, err := service.NewMongoClient(*mongoURL)
 	if err != nil {
 		log.Fatal("cannot make a client: ", err)
 	}

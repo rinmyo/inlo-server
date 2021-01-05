@@ -1908,12 +1908,6 @@
       "S-U"
     ],
     "conflicts": [
-      "X1LQ-IIG",
-      "X1LQ-3G",
-      "X1LQ-4G",
-      "X1LQ-6G",
-      "X1LQ-8G",
-      "X1LQ-10G",
       "S3JG-3G",
       "S3JG-IG"
     ],
@@ -1984,12 +1978,6 @@
       "S-UU"
     ],
     "conflicts": [
-      "X1LQ-IG",
-      "X1LQ-3G",
-      "X1LQ-4G",
-      "X1LQ-6G",
-      "X1LQ-8G",
-      "X1LQ-10G",
       "S3JG-3G",
       "S3JG-IG"
     ],
@@ -2025,12 +2013,6 @@
       "S-UU"
     ],
     "conflicts": [
-      "X1LQ-IG",
-      "X1LQ-3G",
-      "X1LQ-IIG",
-      "X1LQ-6G",
-      "X1LQ-8G",
-      "X1LQ-10G",
       "S3JG-3G",
       "S3JG-IG",
       "S3JG-IIG",
@@ -2071,12 +2053,6 @@
       "S-UU"
     ],
     "conflicts": [
-      "X1LQ-IG",
-      "X1LQ-3G",
-      "X1LQ-IIG",
-      "X1LQ-4G",
-      "X1LQ-8G",
-      "X1LQ-10G",
       "S3JG-3G",
       "S3JG-IG",
       "S3JG-IIG",
@@ -2117,11 +2093,6 @@
       "S-UU"
     ],
     "conflicts": [
-      "X1LQ-IG",
-      "X1LQ-3G",
-      "X1LQ-IIG",
-      "X1LQ-6G",
-      "X1LQ-10G",
       "S3JG-3G",
       "S3JG-IG",
       "S3JG-IIG",
@@ -2161,11 +2132,6 @@
       "S-UU"
     ],
     "conflicts": [
-      "X1LQ-IG",
-      "X1LQ-3G",
-      "X1LQ-IIG",
-      "X1LQ-6G",
-      "X1LQ-8G",
       "S3JG-3G",
       "S3JG-IG",
       "S3JG-IIG",
