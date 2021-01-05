@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-const ioPath = "./resource/Io.json"
+const ioPath = "./resource/io.json"
 
 type StationController interface {
 	GetIOInfo() map[string][]string

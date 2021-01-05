@@ -1,8 +1,8 @@
 {
   "IG-X3JG": {
     "buttons": [
-      "XLA",
-      "SILA"
+      "SILA",
+      "XLA"
     ],
     "section": [
       "3-7DG",
@@ -31,8 +31,8 @@
   },
   "3G-X3JG": {
     "buttons": [
-      "XLA",
-      "S3LA"
+      "S3LA",
+      "XLA"
     ],
     "section": [
       "3-7DG",
@@ -66,8 +66,8 @@
   },
   "IIG-X3JG": {
     "buttons": [
-      "XLA",
-      "SIILA"
+      "SIILA",
+      "XLA"
     ],
     "section": [
       "3-7DG",
@@ -99,8 +99,8 @@
   },
   "4G-X3JG": {
     "buttons": [
-      "XLA",
-      "S4LA"
+      "S4LA",
+      "XLA"
     ],
     "section": [
       "3-7DG",
@@ -136,8 +136,8 @@
   },
   "6G-X3JG": {
     "buttons": [
-      "XLA",
-      "S6LA"
+      "S6LA",
+      "XLA"
     ],
     "section": [
       "3-7DG",
@@ -174,8 +174,8 @@
   },
   "8G-X3JG": {
     "buttons": [
-      "XLA",
-      "S8LA"
+      "S8LA",
+      "XLA"
     ],
     "section": [
       "3-7DG",
@@ -214,8 +214,8 @@
   },
   "10G-X3JG": {
     "buttons": [
-      "XLA",
-      "S10LA"
+      "S10LA",
+      "XLA"
     ],
     "section": [
       "3-7DG",
@@ -255,8 +255,8 @@
 
   "IG-S1LQ": {
     "buttons": [
-      "XFLA",
-      "SILA"
+      "SILA",
+      "XFLA"
     ],
     "section": [
       "IIAG",
@@ -288,8 +288,8 @@
   },
   "3G-S1LQ": {
     "buttons": [
-      "XFLA",
-      "S3LA"
+      "S3LA",
+      "XFLA"
     ],
     "section": [
       "IIAG",
@@ -326,8 +326,8 @@
   },
   "IIG-S1LQ": {
     "buttons": [
-      "XFLA",
-      "SIILA"
+      "SIILA",
+      "XFLA"
     ],
     "section": [
       "IIAG",
@@ -358,8 +358,8 @@
   },
   "4G-S1LQ": {
     "buttons": [
-      "XFLA",
-      "S4LA"
+      "S4LA",
+      "XFLA"
     ],
     "section": [
       "IIAG",
@@ -394,8 +394,8 @@
   },
   "6G-S1LQ": {
     "buttons": [
-      "XFLA",
-      "S6LA"
+      "S6LA",
+      "XFLA"
     ],
     "section": [
       "IIAG",
@@ -431,8 +431,8 @@
   },
   "8G-S1LQ": {
     "buttons": [
-      "XFLA",
-      "S8LA"
+      "S8LA",
+      "XFLA"
     ],
     "section": [
       "IIAG",
@@ -470,8 +470,8 @@
   },
   "10G-S1LQ": {
     "buttons": [
-      "XFLA",
-      "S10LA"
+      "S10LA",
+      "XFLA"
     ],
     "section": [
       "IIAG",
@@ -510,8 +510,8 @@
 
   "IG-X1LQ": {
     "buttons": [
-      "SFLA",
-      "XILA"
+      "XILA",
+      "SFLA"
     ],
     "section": [
       "IBG",
@@ -542,8 +542,8 @@
   },
   "3G-X1LQ": {
     "buttons": [
-      "SFLA",
-      "X3LA"
+      "X3LA",
+      "SFLA"
     ],
     "section": [
       "IBG",
@@ -574,8 +574,8 @@
   },
   "IIG-X1LQ": {
     "buttons": [
-      "SFLA",
-      "XIILA"
+      "XIILA",
+      "SFLA"
     ],
     "section": [
       "IBG",
@@ -606,8 +606,8 @@
   },
   "4G-X1LQ": {
     "buttons": [
-      "SFLA",
-      "X4LA"
+      "X4LA",
+      "SFLA"
     ],
     "section": [
       "IBG",
@@ -642,8 +642,8 @@
   },
   "6G-X1LQ": {
     "buttons": [
-      "SFLA",
-      "X6LA"
+      "X6LA",
+      "SFLA"
     ],
     "section": [
       "IBG",
@@ -678,8 +678,8 @@
   },
   "8G-X1LQ": {
     "buttons": [
-      "SFLA",
-      "X8LA"
+      "X8LA",
+      "SFLA"
     ],
     "section": [
       "IBG",
@@ -715,8 +715,8 @@
   },
   "10G-X1LQ": {
     "buttons": [
-      "SFLA",
-      "X10LA"
+      "X10LA",
+      "SFLA"
     ],
     "section": [
       "IBG",
@@ -753,8 +753,8 @@
 
   "IG-S3JG": {
     "buttons": [
-      "SLA",
-      "XILA"
+      "XILA",
+      "SLA"
     ],
     "section": [
       "4DG",
@@ -785,8 +785,8 @@
   },
   "3G-S3JG": {
     "buttons": [
-      "SLA",
-      "X3LA"
+      "X3LA",
+      "SLA"
     ],
     "section": [
       "4DG",
@@ -817,8 +817,8 @@
   },
   "IIG-S3JG": {
     "buttons": [
-      "SLA",
-      "XIILA"
+      "XIILA",
+      "SLA"
     ],
     "section": [
       "4DG",
@@ -846,8 +846,8 @@
   },
   "4G-S3JG": {
     "buttons": [
-      "SLA",
-      "X4LA"
+      "X4LA",
+      "SLA"
     ],
     "section": [
       "4DG",
@@ -879,8 +879,8 @@
   },
   "6G-S3JG": {
     "buttons": [
-      "SLA",
-      "X6LA"
+      "X6LA",
+      "SLA"
     ],
     "section": [
       "4DG",
@@ -912,8 +912,8 @@
   },
   "8G-S3JG": {
     "buttons": [
-      "SLA",
-      "X8LA"
+      "X8LA",
+      "SLA"
     ],
     "section": [
       "4DG",
@@ -947,8 +947,8 @@
   },
   "10G-S3JG": {
     "buttons": [
-      "SLA",
-      "X10LA"
+      "X10LA",
+      "SLA"
     ],
     "section": [
       "4DG",

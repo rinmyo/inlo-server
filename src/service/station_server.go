@@ -7,6 +7,7 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"pracserver/src/pb"
+	"reflect"
 )
 
 // StationServer is the server that provides station service
@@ -102,10 +103,32 @@ func (s *StationServer) RefreshStation(_ *emptypb.Empty, stream pb.StationServic
 	return nil
 }
 
+func (s *StationServer) getRouteByName(name string) (*Route, bool) {
+	val, ok := s.sm.interlock[name]
+	if !ok {
+		log.WithField(reason, msg.NoSuchRouteMsg).
+			WithField(routeName, name).
+			Error(msg.ObtainRouteFailMsg)
+	}
+	return val, ok
+}
+
+func (s *StationServer) getRouteByBtn(btns ...string) (*Route, bool) {
+	for _, v := range s.sm.interlock {
+		if reflect.DeepEqual(v.Buttons, btns) {
+			return v, true
+		}
+	}
+	log.WithField(reason, msg.NoSuchRouteMsg).
+		WithField(buttons, btns).
+		Error(msg.ObtainRouteFailMsg)
+	return nil, false
+}
+
 func (s *StationServer) CreateRoute(_ context.Context, req *pb.CreateRouteRequest) (*pb.CreateRouteResponse, error) {
 	btns := req.GetButtons().GetButtonId()
 	log.Debug("get buttons: ", btns)
-	if route, ok := s.sm.GetRouteByBtn(btns...); ok {
+	if route, ok := s.getRouteByBtn(btns...); ok {
 		err := s.sm.CreateRoute(route)
 		if err != nil {
 			return nil, err
@@ -119,7 +142,7 @@ func (s *StationServer) CreateRoute(_ context.Context, req *pb.CreateRouteReques
 
 func (s *StationServer) CancelRoute(_ context.Context, req *pb.CancelRouteRequest) (*emptypb.Empty, error) {
 	rid := req.GetRouteId()
-	route, ok := s.sm.GetRouteByName(rid)
+	route, ok := s.getRouteByName(rid)
 	if ok {
 		err := s.sm.CancelRoute(route)
 		if err != nil {

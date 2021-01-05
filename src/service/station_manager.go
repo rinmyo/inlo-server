@@ -157,21 +157,26 @@ func (m *StationManager) CreateRoute(r *Route) error {
 		}()
 	}
 
+	var abnormalSignals []*pb.Signal
 	for _, v := range r.Signals {
 		s := ParseSignal(v)
-		signal := c.GetSignalStatus(s.Id)
 		//如果信號機損壞或未知
-		if signal == pb.Signal_BROKEN || signal == pb.Signal_UNKNOWN {
-			errMsg["signal state abnormal"] = signal
+		if signal := c.GetSignalStatus(s.Id); signal == pb.Signal_BROKEN || signal == pb.Signal_UNKNOWN {
+			abnormalSignals = append(abnormalSignals, s)
 		}
-		go func() {
-			c.UpdateSignalStatus(s)
-		}()
 	}
-
+	if len(occupiedSections) > 0 {
+		errMsg["signals abnormal"] = abnormalSignals
+	}
 	//信號機是否有錯
 	if str, _ := json.Marshal(errMsg); len(errMsg) > 0 {
 		return status.Error(codes.Internal, string(str[:]))
+	}
+	for _, v := range r.Signals {
+		s := ParseSignal(v)
+		go func() {
+			c.UpdateSignalStatus(s)
+		}()
 	}
 
 	m.interlock[r.Id].Create()
@@ -203,19 +208,30 @@ func (m *StationManager) CancelRoute(r *Route) error {
 	}
 	c := *m.controller
 	//無錯 先關閉信號
+	var abnormalSignals []*pb.Signal
 	for _, v := range r.Signals {
 		s := ParseAbortSignal(v)
 		signal := c.GetSignalStatus(s.Id)
 		//如果信號機損壞或未知
 		if signal == pb.Signal_BROKEN || signal == pb.Signal_UNKNOWN {
-			errMsg["signal state abnormal"] = signal
+			abnormalSignals = append(abnormalSignals, s)
 		}
+	}
+	if len(occupiedSections) > 0 {
+		errMsg["signals abnormal"] = abnormalSignals
+	}
+	if str, _ := json.Marshal(errMsg); len(errMsg) > 0 {
+		return status.Error(codes.Internal, string(str[:]))
+	}
+	//動作信號機
+	for _, v := range r.Signals {
+		s := ParseAbortSignal(v)
 		go func() {
 			c.UpdateSignalStatus(s)
 		}()
 	}
 
-	//接着 動作道岔
+	//動作道岔
 	var turnouts []*pb.Turnout
 	for _, v := range r.Turnouts {
 		ts, err := ParseNormalTurnout(v)
@@ -228,6 +244,13 @@ func (m *StationManager) CancelRoute(r *Route) error {
 	}
 	err := m.SetTurnouts(turnouts)
 	if err != nil {
+		//恢復信號機
+		for _, v := range r.Signals {
+			s := ParseSignal(v)
+			go func() {
+				c.UpdateSignalStatus(s)
+			}()
+		}
 		return err
 	}
 
@@ -345,34 +368,6 @@ func (m *StationManager) RefreshStationStatus() {
 			m.signals[id] = newState
 		}
 	}
-}
-
-func (m *StationManager) GetRouteByName(name string) (*Route, bool) {
-	val, ok := m.interlock[name]
-	if !ok {
-		log.WithField(reason, msg.NoSuchRouteMsg).
-			WithField(routeName, name).
-			Error(msg.ObtainRouteFailMsg)
-	}
-	return val, ok
-}
-
-func (m *StationManager) GetRouteByBtn(btns ...string) (*Route, bool) {
-outer:
-	for _, v := range m.interlock {
-		if len(v.Buttons) == len(btns) {
-			for i := 0; i < len(btns); i++ {
-				if v.Buttons[i] != btns[i] {
-					continue outer
-				}
-			}
-			return v, true
-		}
-	}
-	log.WithField(reason, msg.NoSuchRouteMsg).
-		WithField(buttons, btns).
-		Error(msg.ObtainRouteFailMsg)
-	return nil, false
 }
 
 func loadRoute(interlock map[string]*Route, interlockRoute string) {
