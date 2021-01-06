@@ -3,6 +3,7 @@ package config
 import (
 	"encoding/json"
 	"errors"
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
 	"os"
 )
@@ -28,13 +29,13 @@ type Lang struct {
 	SectionNotFreeMsg   string `json:"section_not_free_msg"`
 }
 
-var defaultLang, _ = NewLang(defaultLangCode)
+var Path string
 
 func NewLang(langCode string) (*Lang, error) {
 	var lang Lang
-	completePath := i18nPath + langCode + ".json"
+	completePath := Path + langCode + ".json"
 	if jsonFile, err := os.Open(completePath); err != nil {
-		return nil, errors.New(Msg.OpenFileFailMsg)
+		return nil, errors.New("cannot open file: " + completePath)
 	} else if byteValue, err := ioutil.ReadAll(jsonFile); err != nil {
 		return nil, errors.New(Msg.ReadFileFailMsg)
 	} else if err = jsonFile.Close(); err != nil {
@@ -43,4 +44,13 @@ func NewLang(langCode string) (*Lang, error) {
 		return nil, errors.New(Msg.ParseFileFailMsg)
 	}
 	return &lang, nil
+}
+
+func DefaultLang() *Lang {
+	lang, err := NewLang(defaultLangCode)
+	if err != nil {
+		log.Fatal(err)
+		return nil
+	}
+	return lang
 }

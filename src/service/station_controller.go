@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	log "github.com/sirupsen/logrus"
 	"io/ioutil"
+	"pracserver/src/config"
 	"pracserver/src/pb"
 	"sync"
 	"time"
@@ -61,13 +62,13 @@ func NewSimulatedController(ioPath string) *SimulatedController {
 	var io map[string]map[string]string
 	bytes, err := ioutil.ReadFile(ioPath)
 	if err != nil {
-		log.WithField(content, "interlock").Fatal(msg.ReadFileFailMsg)
+		log.WithField(content, "interlock").Fatal(config.Msg.ReadFileFailMsg)
 		return nil
 	}
 
 	err = json.Unmarshal(bytes, &io)
 	if err != nil {
-		log.WithField(content, "interlock").Fatal(msg.ParseFileFailMsg)
+		log.WithField(content, "interlock").Fatal(config.Msg.ParseFileFailMsg)
 		return nil
 	}
 

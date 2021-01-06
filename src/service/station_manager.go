@@ -6,6 +6,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"io/ioutil"
+	"pracserver/src/config"
 	"pracserver/src/pb"
 	"sync"
 	"time"
@@ -371,17 +372,17 @@ func (m *StationManager) RefreshStationStatus() {
 }
 
 func loadRoute(interlock map[string]*Route, interlockRoute string) {
-	log.WithField(content, "interlock").Info(msg.LoadRouteMsg)
+	log.WithField(content, "interlock").Info(config.Msg.LoadRouteMsg)
 	bytes, err := ioutil.ReadFile(interlockRoute)
 
 	if err != nil {
-		log.WithField(content, "interlock").Fatal(msg.ReadFileFailMsg)
+		log.WithField(content, "interlock").Fatal(config.Msg.ReadFileFailMsg)
 		return
 	}
 
 	err = json.Unmarshal(bytes, &interlock)
 	if err != nil {
-		log.WithField(content, "interlock").Fatal(msg.ParseFileFailMsg)
+		log.WithField(content, "interlock").Fatal(config.Msg.ParseFileFailMsg)
 		return
 	}
 
@@ -399,7 +400,7 @@ func loadRoute(interlock map[string]*Route, interlockRoute string) {
 		if err != nil {
 			log.Error(err)
 		}
-		log.WithFields(field).Info(msg.LoadRouteMsg)
+		log.WithFields(field).Info(config.Msg.LoadRouteMsg)
 	}
 
 }

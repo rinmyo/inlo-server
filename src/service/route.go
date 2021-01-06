@@ -1,7 +1,6 @@
 package service
 
 import (
-	"pracserver/src/config"
 	"sync"
 )
 
@@ -11,10 +10,6 @@ const (
 	content   = "Content"
 	buttons   = "Buttons"
 	routeName = "Name"
-)
-
-var (
-	msg = config.Msg
 )
 
 type Route struct {

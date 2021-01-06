@@ -6,6 +6,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"pracserver/src/config"
 	"pracserver/src/pb"
 	"reflect"
 )
@@ -106,9 +107,9 @@ func (s *StationServer) RefreshStation(_ *emptypb.Empty, stream pb.StationServic
 func (s *StationServer) getRouteByName(name string) (*Route, bool) {
 	val, ok := s.sm.interlock[name]
 	if !ok {
-		log.WithField(reason, msg.NoSuchRouteMsg).
+		log.WithField(reason, config.Msg.NoSuchRouteMsg).
 			WithField(routeName, name).
-			Error(msg.ObtainRouteFailMsg)
+			Error(config.Msg.ObtainRouteFailMsg)
 	}
 	return val, ok
 }
@@ -119,9 +120,9 @@ func (s *StationServer) getRouteByBtn(btns ...string) (*Route, bool) {
 			return v, true
 		}
 	}
-	log.WithField(reason, msg.NoSuchRouteMsg).
+	log.WithField(reason, config.Msg.NoSuchRouteMsg).
 		WithField(buttons, btns).
-		Error(msg.ObtainRouteFailMsg)
+		Error(config.Msg.ObtainRouteFailMsg)
 	return nil, false
 }
 

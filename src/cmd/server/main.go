@@ -64,10 +64,14 @@ const logFormat = "log_20060102150405"
 
 func main() {
 	port := flag.Int("port", 8080, "the server port")
+	configPath := flag.String("config", "./resource/config.toml", "the config file path")
+	i18nPath := flag.String("i18n", "./resource/i18n/", "the i18n folder path")
 	interlockPath := flag.String("interlock", "./resource/interlock.json", "the interlock file path")
 	ioPath := flag.String("io", "./resource/io.json", "the io file path")
 	mongoURL := flag.String("mongo", "0.0.0.0:27017", "mongodb url")
 	flag.Parse()
+	config.Path = *i18nPath
+	config.LoadConfig(*configPath)
 
 	client, disconnectMongoDB, err := service.NewMongoClient(*mongoURL)
 	if err != nil {

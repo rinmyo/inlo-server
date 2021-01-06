@@ -9,9 +9,6 @@ const (
 	defaultLevel    = log.InfoLevel
 	defaultLangCode = "en-US"
 
-	configPath = "./resource/config.toml"
-	i18nPath   = "./resource/i18n/"
-
 	loadFailedMsg = "loading configuration failed!"
 )
 
@@ -58,14 +55,14 @@ func language() (*Lang, string) {
 			log.WithField("Option", userLang).
 				Error(Msg.IllegalOptMsg, ":")
 			log.Error(err)
-			return defaultLang, defaultLangCode
+			return DefaultLang(), defaultLangCode
 		} else {
 			return lang, v.(string)
 		}
 	} else {
 		log.WithField("Option", userLang).
 			Warn(Msg.UnspecOptMsg)
-		return defaultLang, defaultLangCode
+		return DefaultLang(), defaultLangCode
 	}
 }
 
@@ -77,15 +74,15 @@ func setConfig(cfg *toml.Tree) {
 	config = cfg
 }
 
-func loadConfig() {
-	setLanguage(defaultLang)
+func LoadConfig(configPath string) {
+	setLanguage(DefaultLang())
 	setLogLevel(defaultLevel)
 	if cfg, err := toml.LoadFile(configPath); err != nil {
 		log.Fatal(loadFailedMsg)
 	} else {
 		setConfig(cfg)
 
-		if lang, code := language(); lang != defaultLang {
+		if lang, code := language(); lang != DefaultLang() {
 			setLanguage(lang)
 			log.WithField(userLang, code).Info(Msg.SetOptMsg)
 		}
@@ -97,8 +94,4 @@ func loadConfig() {
 
 		log.WithField("Station", StationName()).Info(Msg.LoadRouteMsg)
 	}
-}
-
-func init() {
-	loadConfig()
 }
