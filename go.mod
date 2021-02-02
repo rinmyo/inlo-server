@@ -1,4 +1,4 @@
-module pracserver
+module inlo-server
 
 go 1.15
 
